@@ -121,10 +121,22 @@ public class ArraySorter {
         }
     }
 
+    // TODO: Implement merge sort algorithm
+    /**
+     * Sorts an array of integers using the merge sort algorithm.
+     * Merge sort is a divide-and-conquer algorithm that divides the array into halves, sorts each half, and merges them back together.
+     * Time complexity is O(n log n).
+     * Space complexity is O(n) due to the temporary arrays used for merging.
+     *
+     * @param nums the array of integers to be sorted
+     */
+    public static void mergeSort(int[] nums) {}
+
     /**
      * Sorts an array of integers using the quick sort algorithm.
      * Quick sort is a divide-and-conquer algorithm that selects a pivot element and partitions the surrounding array.
      * Time complexity is O(n log n) on average, but can degrade to O(n^2) in the worst case.
+     * Space complexity is O(log n) due to the recursive stack space.
      *
      * @param nums the array of integers to be sorted
      */
