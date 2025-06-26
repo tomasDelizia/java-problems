@@ -35,32 +35,56 @@ class ArraySorterTest {
     }
 
     @Test
-    void insertionSortWithEmptyArray() {
+    void simpleInsertionSortWithEmptyArray() {
         int[] nums = {};
-        ArraySorter.insertionSort(nums);
+        ArraySorter.insertionSort(nums, 1);
         assertArrayEquals(new int[]{}, nums);
     }
 
     @Test
-    void insertionSortWithSingleElementArray() {
+    void simpleInsertionSortWithSingleElementArray() {
         int[] nums = {5};
-        ArraySorter.insertionSort(nums);
+        ArraySorter.insertionSort(nums, 1);
         assertArrayEquals(new int[]{5}, nums);
     }
 
     @Test
-    void insertionSortWithMultipleElements() {
+    void simpleInsertionSortWithMultipleElements() {
         int[] nums = {5, 3, 8, 1, 2};
-        ArraySorter.insertionSort(nums);
+        ArraySorter.insertionSort(nums, 1);
         assertArrayEquals(new int[]{1, 2, 3, 5, 8}, nums);
 
         nums = new int[]{10, -1, 0, 5};
-        ArraySorter.insertionSort(nums);
+        ArraySorter.insertionSort(nums, 1);
         assertArrayEquals(new int[]{-1, 0, 5, 10}, nums);
 
         nums = new int[]{7, 7, 7};
-        ArraySorter.insertionSort(nums);
+        ArraySorter.insertionSort(nums, 1);
         assertArrayEquals(new int[]{7, 7, 7}, nums);
     }
 
+    @Test
+    void shellSortWithEmptyArray() {
+        int[] nums = {};
+        ArraySorter.shellSort(nums);
+        assertArrayEquals(new int[]{}, nums);
+    }
+
+    @Test
+    void shellSortWithSingleElementArray() {
+        int[] nums = {5};
+        ArraySorter.shellSort(nums);
+        assertArrayEquals(new int[]{5}, nums);
+    }
+
+    @Test
+    void shellSortWithMultipleElements() {
+        int[] nums = {5, 3, 8, 1, 2};
+        ArraySorter.shellSort(nums);
+        assertArrayEquals(new int[]{1, 2, 3, 5, 8}, nums);
+
+        nums = new int[]{3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 9, 7, 2, 3, 8, 4, 6, 2, 6};
+        ArraySorter.shellSort(nums);
+        assertArrayEquals(new int[]{1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 8, 9, 9}, nums);
+    }
 }
