@@ -136,7 +136,7 @@ public class ArraySorter {
     }
 
     private static void quick(int[] nums, int left, int right) {
-        int pivot = getPivot(nums, left, right);
+        int pivot = getPivotM3(nums, left, right);
         int i = left, j = right;
         // Pivot current subarray
         while (i <= j) {
@@ -168,5 +168,28 @@ public class ArraySorter {
 
     private static int getPivot(int[] nums, int left, int right) {
         return nums[(left + right) / 2];
+    }
+
+    private static int getPivotM3(int[] nums, int left, int right) {
+        int center = (left + right) / 2;
+        if (nums[right] < nums[left]) {
+            // Swap left and right if left is greater than right
+            int larger = nums[left];
+            nums[left] = nums[right];
+            nums[right] = larger;
+        }
+        if (nums[center] < nums[left]) {
+            // Swap center and left if center is less than left
+            int larger = nums[left];
+            nums[left] = nums[center];
+            nums[center] = larger;
+        }
+        if (nums[center] > nums[right]) {
+            // Swap center and right if center is greater than right
+            int larger = nums[right];
+            nums[right] = nums[center];
+            nums[center] = larger;
+        }
+        return nums[center]; // Return the median of the three values as the pivot
     }
 }
