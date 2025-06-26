@@ -1,4 +1,4 @@
-package com.tomasdelizia.exercises.heap;
+package com.tomasdelizia.problems.heap;
 
 public class IsPalindrome {
     // Time: O(n)

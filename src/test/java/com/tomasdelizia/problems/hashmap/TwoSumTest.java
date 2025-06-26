@@ -1,4 +1,4 @@
-package com.tomasdelizia.exercises.hashmap;
+package com.tomasdelizia.problems.hashmap;
 
 import org.junit.jupiter.api.Test;
 
