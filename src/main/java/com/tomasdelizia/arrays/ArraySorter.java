@@ -124,6 +124,7 @@ public class ArraySorter {
     /**
      * Sorts an array of integers using the quick sort algorithm.
      * Quick sort is a divide-and-conquer algorithm that selects a pivot element and partitions the surrounding array.
+     * Time complexity is O(n log n) on average, but can degrade to O(n^2) in the worst case.
      *
      * @param nums the array of integers to be sorted
      */
