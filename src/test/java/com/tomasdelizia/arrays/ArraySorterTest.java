@@ -87,4 +87,33 @@ class ArraySorterTest {
         ArraySorter.shellSort(nums);
         assertArrayEquals(new int[]{1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 8, 9, 9}, nums);
     }
+
+    @Test
+    void heapSortWithEmptyArray() {
+        int[] nums = {};
+        ArraySorter.heapSort(nums);
+        assertArrayEquals(new int[]{}, nums);
+    }
+
+    @Test
+    void heapSortWithSingleElementArray() {
+        int[] nums = {5};
+        ArraySorter.heapSort(nums);
+        assertArrayEquals(new int[]{5}, nums);
+    }
+
+    @Test
+    void heapSortWithMultipleElements() {
+        int[] nums = {3, 7, 5, 8};
+        ArraySorter.heapSort(nums);
+        assertArrayEquals(new int[]{3, 5, 7, 8}, nums);
+
+        nums = new int[]{10, -1, 0, 5};
+        ArraySorter.heapSort(nums);
+        assertArrayEquals(new int[]{-1, 0, 5, 10}, nums);
+
+        nums = new int[]{7, 7, 7};
+        ArraySorter.heapSort(nums);
+        assertArrayEquals(new int[]{7, 7, 7}, nums);
+    }
 }
