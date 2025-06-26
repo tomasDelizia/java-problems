@@ -120,4 +120,52 @@ public class ArraySorter {
             nums[parentIndex] = valueToReheap;
         }
     }
+
+    /**
+     * Sorts an array of integers using the quick sort algorithm.
+     * Quick sort is a divide-and-conquer algorithm that selects a pivot element and partitions the surrounding array.
+     *
+     * @param nums the array of integers to be sorted
+     */
+    public static void quickSort(int[] nums) {
+        if (nums == null || nums.length <= 1) {
+            return; // No need to sort an empty array or an array with one element
+        }
+        quick(nums, 0, nums.length - 1);
+    }
+
+    private static void quick(int[] nums, int left, int right) {
+        int pivot = getPivot(nums, left, right);
+        int i = left, j = right;
+        // Pivot current subarray
+        while (i <= j) {
+            while (nums[i] < pivot && i < right) {
+                i++;
+            }
+            while (pivot < nums[j] && j > left) {
+                j--;
+            }
+            if (i <= j) {
+                // Swap elements that are higher than pivot to the right and viceversa
+                int largerThanPivot = nums[i];
+                int lowerThanPivot = nums[j];
+                nums[i] = lowerThanPivot;
+                nums[j] = largerThanPivot;
+                i++;
+                j--;
+            }
+        }
+        if (left < j) {
+            // Pivot left half of array
+            quick(nums, left, j);
+        }
+        if (i < right) {
+            // Pivot right half of array
+            quick(nums, i, right);
+        }
+    }
+
+    private static int getPivot(int[] nums, int left, int right) {
+        return nums[(left + right) / 2];
+    }
 }
