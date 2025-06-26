@@ -34,4 +34,33 @@ class ArraySorterTest {
         assertArrayEquals(new int[]{7, 7, 7}, nums);
     }
 
+    @Test
+    void insertionSortWithEmptyArray() {
+        int[] nums = {};
+        ArraySorter.insertionSort(nums);
+        assertArrayEquals(new int[]{}, nums);
+    }
+
+    @Test
+    void insertionSortWithSingleElementArray() {
+        int[] nums = {5};
+        ArraySorter.insertionSort(nums);
+        assertArrayEquals(new int[]{5}, nums);
+    }
+
+    @Test
+    void insertionSortWithMultipleElements() {
+        int[] nums = {5, 3, 8, 1, 2};
+        ArraySorter.insertionSort(nums);
+        assertArrayEquals(new int[]{1, 2, 3, 5, 8}, nums);
+
+        nums = new int[]{10, -1, 0, 5};
+        ArraySorter.insertionSort(nums);
+        assertArrayEquals(new int[]{-1, 0, 5, 10}, nums);
+
+        nums = new int[]{7, 7, 7};
+        ArraySorter.insertionSort(nums);
+        assertArrayEquals(new int[]{7, 7, 7}, nums);
+    }
+
 }
