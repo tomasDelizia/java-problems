@@ -186,9 +186,9 @@ public class ArraySorter {
         }
         if (nums[center] > nums[right]) {
             // Swap center and right if center is greater than right
-            int larger = nums[right];
+            int lower = nums[right];
             nums[right] = nums[center];
-            nums[center] = larger;
+            nums[center] = lower;
         }
         return nums[center]; // Return the median of the three values as the pivot
     }
