@@ -4,7 +4,7 @@ import com.tomasdelizia.arrays.ArraySearcher;
 import com.tomasdelizia.arrays.ArraySorter;
 import com.tomasdelizia.arrays.SortOrder;
 
-public class CoinChange {
+public class GreedyCoinChange {
     /**
      * Greedy algorithm to find the minimum number of coins needed to make a given amount.
      * The coins must be sorted in descending order for the greedy approach to work correctly.
