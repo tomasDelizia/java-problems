@@ -72,4 +72,34 @@ class ArrayTransformTest {
         assertArrayEquals(new int[]{5, 5, 5, 5}, nums);
         assert k == 1;
     }
+
+    @Test
+    void rotateWithSingleElementArray() {
+        int[] nums = {1};
+        ArrayTransform.rotate(nums, 1);
+        assertArrayEquals(new int[]{1}, nums);
+
+        nums = new int[]{1, 2};
+        ArrayTransform.rotate(nums, 3);
+        assertArrayEquals(new int[]{1, 2}, nums);
+    }
+
+    @Test
+    void rotateWithMultipleElements() {
+        int[] nums = {1, 2, 3, 4, 5};
+        ArrayTransform.rotate(nums, 2);
+        assertArrayEquals(new int[]{4, 5, 1, 2, 3}, nums);
+
+        nums = new int[]{1, 2, 3, 4, 5};
+        ArrayTransform.rotate(nums, 5);
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5}, nums);
+
+        nums = new int[]{1, 2, 3};
+        ArrayTransform.rotate(nums, 1);
+        assertArrayEquals(new int[]{3, 1, 2}, nums);
+
+        nums = new int[]{1, 2, 3, 4, 5};
+        ArrayTransform.rotate(nums, 3);
+        assertArrayEquals(new int[]{3, 4, 5, 1, 2}, nums);
+    }
 }

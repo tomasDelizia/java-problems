@@ -53,4 +53,27 @@ public class ArrayTransform {
         }
         return k;
     }
+
+    /**
+     * Rotates the array to the right by k steps.
+     *
+     * @param nums the array to rotate
+     * @param k    the number of steps to rotate
+     */
+    public static void rotate(int[] nums, int k) {
+        if (nums.length == 0 || k <= 0) return;
+        int n = nums.length;
+        int[] firstKNums = new int[Math.min(k, n)];
+        // Handle cases where k is greater than n
+        int ki = Math.min(k-1, n-1), j = n - 1;
+        while (ki >= 0 && j >= 0) {
+            firstKNums[ki] = nums[j];
+            ki--;
+            j--;
+        }
+        for (int i = n-k-1; i >= 0; i--) {
+            nums[i+k] = nums[i];
+        }
+        System.arraycopy(firstKNums, 0, nums, 0, firstKNums.length);
+    }
 }
