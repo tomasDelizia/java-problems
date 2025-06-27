@@ -35,7 +35,7 @@ public class ArraySorter {
      *
      * @param nums the array of integers to be sorted
      */
-    public static void insertionSort(int[] nums, int increment) {
+    public static void insertionSort(int[] nums, int increment, SortOrder order) {
         int n = nums.length;
         // Loop through the array starting from the second element
         for (int j = 1; j < n; j++) {
@@ -44,11 +44,23 @@ public class ArraySorter {
             // Find the correct position for the current element in the sorted part of the array
             int lastFromSorted = j - increment;
             // Shift elements in the sorted part of the array to the right until the correct position for the current element is found
-            while (lastFromSorted >= 0 && current < nums[lastFromSorted]) {
-                // Move the larger element h positions to the right
-                nums[lastFromSorted + increment] = nums[lastFromSorted];
-                // Move to the next element in the sorted part of the array
-                lastFromSorted -= increment;
+            switch (order) {
+                case ASCENDING:
+                    while (lastFromSorted >= 0 && current < nums[lastFromSorted]) {
+                        // Move the larger element h positions to the right
+                        nums[lastFromSorted + increment] = nums[lastFromSorted];
+                        // Move to the next element in the sorted part of the array
+                        lastFromSorted -= increment;
+                    }
+                    break;
+                case DESCENDING:
+                    while (lastFromSorted >= 0 && current > nums[lastFromSorted]) {
+                        // Move the larger element h positions to the right
+                        nums[lastFromSorted + increment] = nums[lastFromSorted];
+                        // Move to the next element in the sorted part of the array
+                        lastFromSorted -= increment;
+                    }
+                    break;
             }
             // Insert the current element into its correct position in the sorted part of the array
             nums[lastFromSorted + increment] = current;
@@ -61,7 +73,7 @@ public class ArraySorter {
      *
      * @param nums the array of integers to be sorted
      */
-    public static void shellSort(int[] nums) {
+    public static void shellSort(int[] nums, SortOrder order) {
         int n = nums.length, increment = 1;
         // Calculate the initial increment using the Knuth sequence
         // The increment is calculated as 3^k - 1 / 2, where k is the largest integer such that the increment is less than or equal to n/9
@@ -69,7 +81,7 @@ public class ArraySorter {
             increment = 3 * increment + 1;
         }
         while (increment > 0) {
-            insertionSort(nums, increment);
+            insertionSort(nums, increment, order);
             // Reduce the increment using the Knuth sequence
             increment /= 3;
         }
@@ -122,6 +134,7 @@ public class ArraySorter {
     }
 
     // TODO: Implement merge sort algorithm
+
     /**
      * Sorts an array of integers using the merge sort algorithm.
      * Merge sort is a divide-and-conquer algorithm that divides the array into halves, sorts each half, and merges them back together.
@@ -130,7 +143,8 @@ public class ArraySorter {
      *
      * @param nums the array of integers to be sorted
      */
-    public static void mergeSort(int[] nums) {}
+    public static void mergeSort(int[] nums) {
+    }
 
     /**
      * Sorts an array of integers using the quick sort algorithm.
