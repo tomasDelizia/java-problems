@@ -136,29 +136,44 @@ class ArraySorterTest {
     @Test
     void quickSortWithEmptyArray() {
         int[] nums = {};
-        ArraySorter.quickSort(nums);
+        ArraySorter.quickSort(nums, SortOrder.ASCENDING);
         assertArrayEquals(new int[]{}, nums);
     }
 
     @Test
     void quickSortWithSingleElementArray() {
         int[] nums = {5};
-        ArraySorter.quickSort(nums);
+        ArraySorter.quickSort(nums, SortOrder.ASCENDING);
         assertArrayEquals(new int[]{5}, nums);
     }
 
     @Test
     void quickSortWithMultipleElements() {
         int[] nums = {5, 8, 3, 7, 6, 9, 2};
-        ArraySorter.quickSort(nums);
+        ArraySorter.quickSort(nums, SortOrder.ASCENDING);
         assertArrayEquals(new int[]{2, 3, 5, 6, 7, 8, 9}, nums);
 
         nums = new int[]{10, -1, 0, 5};
-        ArraySorter.quickSort(nums);
+        ArraySorter.quickSort(nums, SortOrder.ASCENDING);
         assertArrayEquals(new int[]{-1, 0, 5, 10}, nums);
 
         nums = new int[]{7, 7, 7};
-        ArraySorter.quickSort(nums);
+        ArraySorter.quickSort(nums, SortOrder.ASCENDING);
+        assertArrayEquals(new int[]{7, 7, 7}, nums);
+    }
+
+    @Test
+    void quickSortWithDescendingOrder() {
+        int[] nums = {5, 8, 3, 7, 6, 9, 2};
+        ArraySorter.quickSort(nums, SortOrder.DESCENDING);
+        assertArrayEquals(new int[]{9, 8, 7, 6, 5, 3, 2}, nums);
+
+        nums = new int[]{10, -1, 0, 5};
+        ArraySorter.quickSort(nums, SortOrder.DESCENDING);
+        assertArrayEquals(new int[]{10, 5, 0, -1}, nums);
+
+        nums = new int[]{7, 7, 7};
+        ArraySorter.quickSort(nums, SortOrder.DESCENDING);
         assertArrayEquals(new int[]{7, 7, 7}, nums);
     }
 }

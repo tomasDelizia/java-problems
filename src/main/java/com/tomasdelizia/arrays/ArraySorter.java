@@ -154,49 +154,68 @@ public class ArraySorter {
      *
      * @param nums the array of integers to be sorted
      */
-    public static void quickSort(int[] nums) {
+    public static void quickSort(int[] nums, SortOrder order) {
         if (nums == null || nums.length <= 1) {
             return; // No need to sort an empty array or an array with one element
         }
-        quick(nums, 0, nums.length - 1);
+        quick(nums, 0, nums.length - 1, order);
     }
 
-    private static void quick(int[] nums, int left, int right) {
+    private static void quick(int[] nums, int left, int right, SortOrder order) {
         int pivot = getPivotM3(nums, left, right);
         int i = left, j = right;
         // Pivot current subarray
         while (i <= j) {
-            while (nums[i] < pivot && i < right) {
-                i++;
+            switch (order) {
+                case ASCENDING:
+                    while (nums[i] < pivot && i < right) {
+                        i++;
+                    }
+                    while (pivot < nums[j] && j > left) {
+                        j--;
+                    }
+                    if (i <= j) {
+                        // Swap elements that are higher than pivot to the right and viceversa
+                        int largerThanPivot = nums[i];
+                        int lowerThanPivot = nums[j];
+                        nums[i] = lowerThanPivot;
+                        nums[j] = largerThanPivot;
+                        i++;
+                        j--;
+                    }
+                    break;
+                case DESCENDING:
+                    while (nums[i] > pivot && i < right) {
+                        i++;
+                    }
+                    while (pivot > nums[j] && j > left) {
+                        j--;
+                    }
+                    if (i <= j) {
+                        // Swap elements that are higher than pivot to the right and viceversa
+                        int largerThanPivot = nums[j];
+                        int lowerThanPivot = nums[i];
+                        nums[j] = lowerThanPivot;
+                        nums[i] = largerThanPivot;
+                        i++;
+                        j--;
+                    }
+                    break;
             }
-            while (pivot < nums[j] && j > left) {
-                j--;
-            }
-            if (i <= j) {
-                // Swap elements that are higher than pivot to the right and viceversa
-                int largerThanPivot = nums[i];
-                int lowerThanPivot = nums[j];
-                nums[i] = lowerThanPivot;
-                nums[j] = largerThanPivot;
-                i++;
-                j--;
-            }
+
         }
         if (left < j) {
             // Pivot left half of array
-            quick(nums, left, j);
+            quick(nums, left, j, order);
         }
         if (i < right) {
             // Pivot right half of array
-            quick(nums, i, right);
+            quick(nums, i, right, order);
         }
     }
 
-    private static int getPivot(int[] nums, int left, int right) {
-        return nums[(left + right) / 2];
-    }
-
     private static int getPivotM3(int[] nums, int left, int right) {
+        // return nums[(left + right) / 2];
         int center = (left + right) / 2;
         if (nums[right] < nums[left]) {
             // Swap left and right if left is greater than right
