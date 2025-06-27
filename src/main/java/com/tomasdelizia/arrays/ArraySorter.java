@@ -192,7 +192,7 @@ public class ArraySorter {
                         j--;
                     }
                     if (i <= j) {
-                        // Swap elements that are higher than pivot to the right and viceversa
+                        // Swap elements that are higher than pivot to the left and viceversa
                         int largerThanPivot = nums[j];
                         int lowerThanPivot = nums[i];
                         nums[j] = lowerThanPivot;
