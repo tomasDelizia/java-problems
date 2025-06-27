@@ -35,6 +35,29 @@ class ArraySorterTest {
     }
 
     @Test
+    void selectionSortTest() {
+        int[] nums = {};
+        ArraySorter.selectionSort(nums);
+        assertArrayEquals(new int[]{}, nums);
+
+        nums = new int[]{5};
+        ArraySorter.selectionSort(nums);
+        assertArrayEquals(new int[]{5}, nums);
+
+        nums = new int[]{5, 3, 8, 1, 2};
+        ArraySorter.selectionSort(nums);
+        assertArrayEquals(new int[]{1, 2, 3, 5, 8}, nums);
+
+        nums = new int[]{10, -1, 0, 5};
+        ArraySorter.selectionSort(nums);
+        assertArrayEquals(new int[]{-1, 0, 5, 10}, nums);
+
+        nums = new int[]{7, 7, 7};
+        ArraySorter.selectionSort(nums);
+        assertArrayEquals(new int[]{7, 7, 7}, nums);
+    }
+
+    @Test
     void simpleInsertionSortWithEmptyArray() {
         int[] nums = {};
         ArraySorter.insertionSort(nums, 1, SortOrder.ASCENDING);

@@ -3,6 +3,8 @@ package com.tomasdelizia.arrays;
 public class ArraySorter {
     /**
      * Sorts an array of integers using the bubble sort algorithm. Also known as direct swap sort.
+     * Time complexity is O(n^2) in the worst case.
+     * Space complexity is O(1) as it sorts the array in place.
      *
      * @param nums the array of integers to be sorted
      */
@@ -31,7 +33,29 @@ public class ArraySorter {
     }
 
     /**
+     * Sorts an array of integers using the selection sort algorithm.
+     * Selection sort is a simple comparison-based sorting algorithm that divides the input into a sorted and an unsorted region.
+     * Time complexity is O(n^2) in the worst case.
+     * Space complexity is O(1) as it sorts the array in place.
+     *
+     * @param nums the array of integers to be sorted
+     */
+    public static void selectionSort(int[] nums) {
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (nums[i] < nums[j]) continue;
+                int larger = nums[i];
+                nums[i] = nums[j];
+                nums[j] = larger;
+            }
+        }
+    }
+
+    /**
      * Sorts an array of integers using the insertion sort algorithm.
+     * Time complexity is O(n^2) in the worst case.
+     * Space complexity is O(1) as it sorts the array in place.
      *
      * @param nums the array of integers to be sorted
      */
@@ -70,6 +94,8 @@ public class ArraySorter {
     /**
      * Sorts an array of integers using the shell sort algorithm.
      * Shell sort is an optimization of insertion sort that allows the exchange of items that are far apart.
+     * Time complexity is O(n^2) in the worst case, but can be improved to O(n log n) with a good increment sequence.
+     * Space complexity is O(1) as it sorts the array in place.
      *
      * @param nums the array of integers to be sorted
      */
@@ -90,6 +116,8 @@ public class ArraySorter {
     /**
      * Sorts an array of integers using the heap sort algorithm.
      * Heap sort is a comparison-based sorting algorithm that uses a binary heap data structure.
+     * Time complexity is O(n log n) in the worst case.
+     * Space complexity is O(1) as it sorts the array in place.
      *
      * @param nums the array of integers to be sorted
      */
