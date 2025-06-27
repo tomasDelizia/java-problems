@@ -81,7 +81,15 @@ class ArrayTransformTest {
 
         nums = new int[]{1, 2};
         ArrayTransform.rotate(nums, 3);
-        assertArrayEquals(new int[]{1, 2}, nums);
+        assertArrayEquals(new int[]{2, 1}, nums);
+
+        nums = new int[]{1, 2, 3};
+        ArrayTransform.rotate(nums, 4);
+        assertArrayEquals(new int[]{3, 1, 2}, nums);
+
+        nums = new int[]{1, 2};
+        ArrayTransform.rotate(nums, 5);
+        assertArrayEquals(new int[]{2, 1}, nums);
     }
 
     @Test

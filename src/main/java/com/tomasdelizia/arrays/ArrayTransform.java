@@ -63,9 +63,10 @@ public class ArrayTransform {
     public static void rotate(int[] nums, int k) {
         if (nums.length == 0 || k <= 0) return;
         int n = nums.length;
-        int[] firstKNums = new int[Math.min(k, n)];
-        // Handle cases where k is greater than n
-        int ki = Math.min(k-1, n-1), j = n - 1;
+        // If k is greater than n, we only need to rotate by k % n steps
+        k = k > n ? k % n : k;
+        int[] firstKNums = new int[k];
+        int ki = (k-1), j = n - 1;
         while (ki >= 0 && j >= 0) {
             firstKNums[ki] = nums[j];
             ki--;
