@@ -1,6 +1,6 @@
 package com.tomasdelizia.arrays;
 
-public class ArrayMerger {
+public class ArrayTransform {
     /**
      * Merges two sorted arrays into one sorted array.
      *
@@ -36,5 +36,21 @@ public class ArrayMerger {
             k++;
         }
         return merged;
+    }
+
+    public static int removeDuplicates(int[] nums) {
+        if (nums.length == 0) return 0;
+        int n = nums.length;
+        int[] nonDuplicates = new int[n];
+        nonDuplicates[0] = nums[0];
+        int k = 1;
+        for (int i = 1; i < n; i++) {
+            int current = nums[i];
+            if (current == nonDuplicates[k-1]) continue;
+            nonDuplicates[k] = current;
+            nums[k] = current;
+            k++;
+        }
+        return k;
     }
 }
