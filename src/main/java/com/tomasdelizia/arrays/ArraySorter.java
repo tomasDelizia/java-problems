@@ -44,7 +44,9 @@ public class ArraySorter {
         int n = nums.length;
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                if (nums[i] < nums[j]) continue;
+                if (nums[i] < nums[j]) {
+                    continue;
+                }
                 int larger = nums[i];
                 nums[i] = nums[j];
                 nums[j] = larger;
@@ -161,8 +163,6 @@ public class ArraySorter {
         }
     }
 
-    // TODO: Implement merge sort algorithm
-
     /**
      * Sorts an array of integers using the merge sort algorithm.
      * Merge sort is a divide-and-conquer algorithm that divides the array into halves, sorts each half, and merges them back together.
@@ -172,6 +172,42 @@ public class ArraySorter {
      * @param nums the array of integers to be sorted
      */
     public static void mergeSort(int[] nums) {
+        int n = nums.length;
+        int[] temporary = new int[n];
+        mergeSort(0, n - 1, nums, temporary);
+    }
+
+    private static void mergeSort(int left, int right, int[] nums, int[] temp) {
+        if (left >= right) {
+            return;
+        }
+        int center = (left + right) / 2;
+        mergeSort(left, center, nums, temp);
+        mergeSort(center + 1, right, nums, temp);
+        merge(left, center, right, nums, temp);
+    }
+
+    private static void merge(int left, int center, int right, int[] nums, int[] temp) {
+        int length = right - left + 1;
+        if (length >= 0) {
+            System.arraycopy(nums, left, temp, left, length);
+        }
+        int i = left, j = center + 1, k = left;
+        while (i <= center && j <= right) {
+            if (temp[i] <= temp[j]) {
+                nums[k] = temp[i];
+                i++;
+            } else {
+                nums[k] = temp[j];
+                j++;
+            }
+            k++;
+        }
+        while (i <= center) {
+            nums[k] = temp[i];
+            k++;
+            i++;
+        }
     }
 
     /**

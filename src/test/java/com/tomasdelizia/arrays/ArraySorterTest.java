@@ -157,6 +157,25 @@ class ArraySorterTest {
     }
 
     @Test
+    void mergeSortTest() {
+        int[] nums = {};
+        ArraySorter.mergeSort(nums);
+        assertArrayEquals(new int[]{}, nums);
+
+        nums = new int[]{5};
+        ArraySorter.mergeSort(nums);
+        assertArrayEquals(new int[]{5}, nums);
+
+        nums = new int[]{5, 3, 8, 1, 2};
+        ArraySorter.mergeSort(nums);
+        assertArrayEquals(new int[]{1, 2, 3, 5, 8}, nums);
+
+        nums = new int[]{10, -1, 0, 5};
+        ArraySorter.mergeSort(nums);
+        assertArrayEquals(new int[]{-1, 0, 5, 10}, nums);
+    }
+
+    @Test
     void quickSortWithEmptyArray() {
         int[] nums = {};
         ArraySorter.quickSort(nums, SortOrder.ASCENDING);
