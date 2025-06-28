@@ -1,5 +1,7 @@
 package com.tomasdelizia.arrays;
 
+import static com.tomasdelizia.arrays.ArraySorter.quickSort;
+
 public class ArrayTransform {
     /**
      * Merges two sorted arrays into one sorted array.
@@ -77,4 +79,34 @@ public class ArrayTransform {
         }
         System.arraycopy(firstKNums, 0, nums, 0, firstKNums.length);
     }
+
+    public static int[] intersect(int[] nums1, int[] nums2) {
+        quickSort(nums1, SortOrder.ASCENDING);
+        quickSort(nums2, SortOrder.ASCENDING);
+        int n = nums1.length, m = nums2.length;
+        int[] temporaryResult = new int[m+n];
+        int k = 0;
+        int j = 0;
+        int min = Math.min(n, m);
+        int max = Math.max(n, m);
+        for (int i = 0; i < min && j < max; i++) {
+            int a = (n < m) ? nums1[i] : nums2[i];
+            int b = (n < m) ? nums2[j] : nums1[j];
+            if (a < b) continue;
+            while (b < a && j < max - 1) {
+                j++;
+                b = (n < m) ? nums2[j] : nums1[j];
+            }
+            if (a != b) continue;
+            temporaryResult[k] = a;
+            j++;
+            k++;
+        }
+        if (k == 0) return new int[0];
+        int[] result = new int[k];
+        System.arraycopy(temporaryResult, 0, result, 0, k);
+        return result;
+    }
+
+
 }
