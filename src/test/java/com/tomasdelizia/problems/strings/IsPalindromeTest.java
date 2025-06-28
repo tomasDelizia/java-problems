@@ -1,4 +1,4 @@
-package com.tomasdelizia.problems.heap;
+package com.tomasdelizia.problems.strings;
 
 import org.junit.jupiter.api.Test;
 
