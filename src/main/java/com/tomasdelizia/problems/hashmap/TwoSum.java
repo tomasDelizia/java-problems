@@ -10,7 +10,8 @@ public class TwoSum {
     // Space: O(n)
     public static int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> indexByValue = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
+        indexByValue.put(nums[0], 0);
+        for (int i = 1; i < nums.length; i++) {
             int desiredValue = target - nums[i];
             if (indexByValue.containsKey(desiredValue)) {
                 return new int[]{i, indexByValue.get(desiredValue)};
