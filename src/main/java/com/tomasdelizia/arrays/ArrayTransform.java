@@ -80,10 +80,20 @@ public class ArrayTransform {
         System.arraycopy(firstKNums, 0, nums, 0, firstKNums.length);
     }
 
+    /**
+     * Finds the intersection of two arrays.
+     * The result contains only unique elements that are present in both arrays.
+     *
+     * @param nums1 the first array
+     * @param nums2 the second array
+     * @return an array containing the intersection of nums1 and nums2
+     */
     public static int[] intersect(int[] nums1, int[] nums2) {
+        // Sort both arrays to ensure they are in ascending order
         quickSort(nums1, SortOrder.ASCENDING);
         quickSort(nums2, SortOrder.ASCENDING);
         int n = nums1.length, m = nums2.length;
+        if (n == 0 || m == 0) return new int[0];
         int[] temporaryResult = new int[m+n];
         int k = 0;
         int j = 0;
@@ -105,6 +115,28 @@ public class ArrayTransform {
         if (k == 0) return new int[0];
         int[] result = new int[k];
         System.arraycopy(temporaryResult, 0, result, 0, k);
+        return result;
+    }
+
+    public static int[] intersectWithWhileLoop(int[] nums1, int[] nums2) {
+        quickSort(nums1, SortOrder.ASCENDING);
+        quickSort(nums2, SortOrder.ASCENDING);
+        int n = nums1.length, m = nums2.length;
+        int[] temp = new int[Math.min(n, m)];
+        int i = 0, j = 0, k = 0;
+        while (i < n && j < m) {
+            if (nums1[i] == nums2[j]) {
+                temp[k++] = nums1[i];
+                i++;
+                j++;
+            } else if (nums1[i] < nums2[j]) {
+                i++;
+            } else {
+                j++;
+            }
+        }
+        int[] result = new int[k];
+        System.arraycopy(temp, 0, result, 0, k);
         return result;
     }
 
