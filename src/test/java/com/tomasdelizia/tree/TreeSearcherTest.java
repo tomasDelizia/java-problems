@@ -47,4 +47,14 @@ class TreeSearcherTest {
         TreeSearcher<Integer> searcher = new TreeSearcher<>();
         assertTrue(searcher.dfs(head, 4));
     }
+
+    @Test
+    void bfsWithMultipleLevels() {
+        TreeNode<Integer> rightChild = new TreeNode<>(3, null, null);
+        TreeNode<Integer> leftLeftChild = new TreeNode<>(5, null, null);
+        TreeNode<Integer> leftChild = new TreeNode<>(2, leftLeftChild, null);
+        TreeNode<Integer> head = new TreeNode<>(1, leftChild, rightChild);
+        TreeSearcher<Integer> searcher = new TreeSearcher<>();
+        assertTrue(searcher.bfs(head, 3));
+    }
 }
