@@ -132,4 +132,26 @@ class LinkedListTest {
         middleValue = list.findMiddleValue();
         assertEquals(1, middleValue);
     }
+
+    @Test
+    void testHasLoop() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        assertFalse(list.hasLoop());
+
+        // Create a loop for testing
+        LinkedList.Node<Integer> node1 = new LinkedList.Node<>(4);
+        LinkedList.Node<Integer> node2 = new LinkedList.Node<>(5);
+        node1.setNext(node2);
+        node2.setNext(node1); // Creates a loop
+        list.setHead(node1);
+        list.setTail(node2);
+        assertTrue(list.hasLoop());
+
+        // Test with an empty list
+        LinkedList<Integer> emptyList = new LinkedList<>();
+        assertFalse(emptyList.hasLoop());
+    }
 }

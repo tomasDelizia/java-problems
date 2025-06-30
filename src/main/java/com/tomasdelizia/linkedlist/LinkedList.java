@@ -188,7 +188,28 @@ public class LinkedList<T> {
         return slow.value;
     }
 
-    static class Node<T> {
+    public boolean hasLoop() {
+        if (size == 0) return false;
+        Node<T> slow = head, fast = head;
+        while (fast.hasNext()) {
+            fast = fast.next;
+            if (fast.hasNext()) fast = fast.next;
+            else return false;
+            slow = slow.next;
+            if (slow.value.equals(fast.value)) return true;
+        }
+        return false;
+    }
+
+    public void setHead(Node<T> head) {
+        this.head = head;
+    }
+
+    public void setTail(Node<T> tail) {
+        this.tail = tail;
+    }
+
+    public static class Node<T> {
         private T value;
         private Node<T> next;
 
@@ -203,6 +224,10 @@ public class LinkedList<T> {
 
         public boolean hasNext() {
             return next != null;
+        }
+
+        public void setNext(Node<T> next) {
+            this.next = next;
         }
     }
 
