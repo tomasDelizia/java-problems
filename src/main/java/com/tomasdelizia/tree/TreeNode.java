@@ -1,29 +1,37 @@
 package com.tomasdelizia.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TreeNode<T> {
     private final T data;
-    private final TreeNode<T> leftChild;
-    private final TreeNode<T> rightChild;
+    private final List<TreeNode<T>> children;
 
-    public TreeNode(T data, TreeNode<T> leftChild, TreeNode<T> rightChild) {
+    public TreeNode(T data, List<TreeNode<T>> children) {
         if (data == null) {
             throw new IllegalArgumentException("Data cannot be null");
         }
         this.data = data;
-        this.leftChild = leftChild;
-        this.rightChild = rightChild;
+        if (children == null) {
+            throw new IllegalArgumentException("Children cannot be null");
+        }
+        this.children = children;
+    }
+
+    public TreeNode(T data) {
+        if (data == null) {
+            throw new IllegalArgumentException("Data cannot be null");
+        }
+        this.data = data;
+        this.children = new ArrayList<>();
     }
 
     public T getData() {
         return data;
     }
 
-    public TreeNode<T> getLeftChild() {
-        return leftChild;
-    }
-
-    public TreeNode<T> getRightChild() {
-        return rightChild;
+    public List<TreeNode<T>> getChildren() {
+        return children;
     }
 
     @Override
