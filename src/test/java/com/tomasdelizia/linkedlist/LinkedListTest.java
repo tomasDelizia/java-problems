@@ -1,0 +1,108 @@
+package com.tomasdelizia.linkedlist;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class LinkedListTest {
+    @Test
+    void testLinkedList() {
+        // Test creating a linked list with a single element
+        LinkedList<Integer> list = new LinkedList<>(5);
+        list.printList();
+        // Test append
+        list.append(10);
+        list.printList();
+        assertEquals(10, list.removeLast());
+        list.printList();
+        assertEquals(5, list.removeLast());
+        list.printList();
+        // Test prepend
+        list.prepend(20);
+        list.printList();
+        list.prepend(5);
+        list.printList();
+        assertEquals(5, list.removeFirst());
+        list.printList();
+        assertEquals(20, list.removeFirst());
+        list.printList();
+        assertNull(list.removeFirst());
+    }
+
+    @Test
+    void testGetByIndex() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        assertEquals(1, list.getValue(0));
+        assertEquals(2, list.getValue(1));
+        assertEquals(3, list.getValue(2));
+        assertNull(list.getValue(3)); // Out of bounds
+    }
+
+    @Test
+    void testSetByIndexAndValue() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        assertTrue(list.setValue(1, 20));
+        assertEquals(20, list.getValue(1));
+        assertTrue(list.setValue(0, 10));
+        assertEquals(10, list.getValue(0));
+        assertTrue(list.setValue(2, 30));
+        assertEquals(30, list.getValue(2));
+        // Attempt to set an out-of-bounds index
+        assertFalse(list.setValue(3, 40)); // Should not change anything
+        assertNull(list.getValue(3));
+    }
+
+    @Test
+    void testInsertByIndexAndValue() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(1);
+        list.append(3);
+        list.insertValue(1, 2); // Insert 2 at index 1
+        assertEquals(2, list.getValue(1));
+        assertEquals(3, list.getValue(2));
+        // Attempt to insert at an out-of-bounds index
+        assertFalse(list.insertValue(5, 4)); // Should not change anything
+        assertNull(list.getValue(5));
+    }
+
+    @Test
+    void testRemoveAtIndex() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        assertEquals(2, list.remove(1)); // Remove at index 1
+        assertEquals(1, list.getValue(0));
+        assertEquals(3, list.getValue(1));
+        // Attempt to remove at an out-of-bounds index
+        assertNull(list.remove(5)); // Should return null
+        assertNull(list.getValue(5));
+    }
+
+    @Test
+    void testReverse() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        System.out.println("Original list:");
+        list.printList();
+        list.reverse();
+        System.out.println("Reversed list:");
+        list.printList();
+        assertEquals(3, list.getValue(0));
+        assertEquals(2, list.getValue(1));
+        assertEquals(1, list.getValue(2));
+
+        // Test reversing an empty list
+        LinkedList<Integer> emptyList = new LinkedList<>();
+        emptyList.reverse();
+        assertNull(emptyList.getValue(0)); // Should still be empty
+    }
+}
