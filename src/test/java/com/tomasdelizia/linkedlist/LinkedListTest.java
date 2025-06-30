@@ -105,4 +105,31 @@ class LinkedListTest {
         emptyList.reverse();
         assertNull(emptyList.getValue(0)); // Should still be empty
     }
+
+    @Test
+    void testFindMiddleValue() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+        list.append(5);
+        Integer middleValue = list.findMiddleValue();
+        assertEquals(3, middleValue);
+
+        list.clear();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+        middleValue = list.findMiddleValue();
+        assertEquals(2, middleValue);
+
+        list.clear();
+        assertNull(list.findMiddleValue());
+
+        list.append(1);
+        middleValue = list.findMiddleValue();
+        assertEquals(1, middleValue);
+    }
 }

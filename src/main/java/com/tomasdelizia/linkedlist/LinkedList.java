@@ -25,6 +25,12 @@ public class LinkedList<T> {
         System.out.println();
     }
 
+    public void clear() {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
+    }
+
     public void append(T value) {
         Node<T> newNode = new Node<>(value);
         if (size == 0) {
@@ -170,6 +176,18 @@ public class LinkedList<T> {
         }
     }
 
+    public T findMiddleValue() {
+        if (size == 0) return null;
+        Node<T> slow = head, fast = head;
+        while (fast.hasNext()) {
+            fast = fast.next;
+            if (fast.hasNext()) fast = fast.next;
+            else return slow.value;
+            slow = slow.next;
+        }
+        return slow.value;
+    }
+
     static class Node<T> {
         private T value;
         private Node<T> next;
@@ -181,6 +199,10 @@ public class LinkedList<T> {
         @Override
         public String toString() {
             return this.value.toString();
+        }
+
+        public boolean hasNext() {
+            return next != null;
         }
     }
 
