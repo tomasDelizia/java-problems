@@ -36,8 +36,8 @@ public class TreeSearcher<T> {
             return false;
         }
         List<TreeNode<T>> visited = new ArrayList<>();
-        Deque<TreeNode<T>> queue = new LinkedList<>();
-        queue.offerFirst(head);
+        Queue<TreeNode<T>> queue = new LinkedList<>();
+        queue.offer(head);
         while (!queue.isEmpty()) {
             TreeNode<T> current = queue.poll();
             visited.add(current);
