@@ -3,9 +3,9 @@ package com.tomasdelizia.problem.linkedlist;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class MiddleNodeTest {
     @Test
@@ -28,7 +28,7 @@ class MiddleNodeTest {
         assertEquals(2, middleValue);
 
         list.clear();
-        assertThrows(NoSuchElementException.class, () -> MiddleNode.findMiddleValue(list));
+        assertNull(MiddleNode.findMiddleValue(list));
 
         list.add(1);
         middleValue = MiddleNode.findMiddleValue(list);

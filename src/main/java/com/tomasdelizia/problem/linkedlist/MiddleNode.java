@@ -5,14 +5,18 @@ import java.util.LinkedList;
 
 public class MiddleNode {
     public static <T> T findMiddleValue(LinkedList<T> list) {
-        Iterator<T> slowIterator = list.iterator(), fastIterator = list.iterator();
-        while (fastIterator.hasNext()) {
-            fastIterator.next();
-            if (fastIterator.hasNext()) fastIterator.next();
-            else return slowIterator.next();
-            if (!fastIterator.hasNext()) return slowIterator.next();
-            slowIterator.next();
+        if (list == null || list.isEmpty()) {
+            return null;
         }
-        return slowIterator.next();
+        Iterator<T> slow = list.iterator(), fast = list.iterator();
+        T middle = null;
+        while (fast.hasNext()) {
+            middle = slow.next();
+            fast.next();
+            if (fast.hasNext()) {
+                fast.next();
+            }
+        }
+        return middle;
     }
 }
