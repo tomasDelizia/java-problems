@@ -105,4 +105,29 @@ class DoublyLinkedListTest {
         emptyList.reverse();
         assertNull(emptyList.getValue(0)); // Should still be empty
     }
+
+    @Test
+    void testIsPalindrome() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        assertFalse(list.isPalindrome()); // Not a palindrome
+
+        DoublyLinkedList<Integer> palindromeList = new DoublyLinkedList<>();
+        palindromeList.append(1);
+        palindromeList.append(2);
+        palindromeList.append(1);
+        assertTrue(palindromeList.isPalindrome()); // Is a palindrome
+
+        DoublyLinkedList<Integer> evenPalindromeList = new DoublyLinkedList<>();
+        evenPalindromeList.append(1);
+        evenPalindromeList.append(2);
+        evenPalindromeList.append(2);
+        evenPalindromeList.append(1);
+        assertTrue(evenPalindromeList.isPalindrome()); // Is a palindrome
+
+        DoublyLinkedList<Integer> emptyList = new DoublyLinkedList<>();
+        assertTrue(emptyList.isPalindrome()); // Empty list is considered a palindrome
+    }
 }

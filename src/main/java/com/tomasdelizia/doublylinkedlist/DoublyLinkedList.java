@@ -175,6 +175,18 @@ public class DoublyLinkedList<T> {
         return toRemove.value;
     }
 
+    public boolean isPalindrome() {
+        Node<T> left = head, right = tail;
+        for (int i = 0; i < size / 2; i++) {
+            if (!left.value.equals(right.value)) {
+                return false;
+            }
+            left = left.next;
+            right = right.prev;
+        }
+        return true;
+    }
+
     public void reverse() {
         // Reverse head, tail and all pointers
         if (size == 0) {
