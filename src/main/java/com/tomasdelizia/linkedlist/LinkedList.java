@@ -201,6 +201,20 @@ public class LinkedList<T> {
         return false;
     }
 
+    public T findKthFromEnd(int k) {
+        if (head == null) return null;
+        if (k == 1) return tail.value;
+        Node<T> slow = head, fast = head;
+        while (fast.hasNext()) {
+            for (int i = 0; i < k - 1; i++) {
+                if (!fast.hasNext()) return null;
+                fast = fast.next;
+            }
+            if (fast.hasNext()) slow = slow.next;
+        }
+        return slow.value;
+    }
+
     public void setHead(Node<T> head) {
         this.head = head;
     }

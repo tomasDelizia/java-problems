@@ -154,4 +154,20 @@ class LinkedListTest {
         LinkedList<Integer> emptyList = new LinkedList<>();
         assertFalse(emptyList.hasLoop());
     }
+
+    @Test
+    void testFindKthFromEnd() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        assertEquals(3, list.findKthFromEnd(1)); // Last element
+        assertEquals(2, list.findKthFromEnd(2)); // Second last element
+        assertEquals(1, list.findKthFromEnd(3)); // Third last element
+        assertNull(list.findKthFromEnd(4)); // Out of bounds
+
+        // Test with an empty list
+        LinkedList<Integer> emptyList = new LinkedList<>();
+        assertNull(emptyList.findKthFromEnd(1));
+    }
 }
