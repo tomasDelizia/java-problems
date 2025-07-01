@@ -4,19 +4,15 @@ import java.util.Comparator;
 import java.util.Objects;
 
 public class BinarySearchTree<T> {
+    private final Comparator<? super T> comparator;
     private Node<T> root;
-    private Comparator<? super T> comparator;
-
-    public BinarySearchTree(T value, Comparator<? super T> comparator) {
-        root = new Node<>(value);
-        this.comparator = comparator;
-    }
-
-    public BinarySearchTree(T value) {
-        root = new Node<>(value);
-    }
 
     public BinarySearchTree() {
+        comparator = null;
+    }
+
+    public BinarySearchTree(Comparator<? super T> comparator) {
+        this.comparator = comparator;
     }
 
     public boolean insert(T value) {
@@ -54,9 +50,6 @@ public class BinarySearchTree<T> {
     }
 
     public boolean contains(T value) {
-        if (root == null) {
-            return false;
-        }
         Node<T> current = root;
         while (current != null) {
             int compare = compare(value, current.value);
@@ -71,6 +64,7 @@ public class BinarySearchTree<T> {
         return false;
     }
 
+    @SuppressWarnings("unchecked")
     private int compare(Object k1, Object k2) {
         return (comparator != null) ? comparator.compare((T) k1, (T) k2)
                 : ((Comparable<? super T>) k1).compareTo((T) k2);

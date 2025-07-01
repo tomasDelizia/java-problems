@@ -21,6 +21,21 @@ class BinarySearchTreeTest {
     }
 
     @Test
+    void testInsertNodeWithComparator() {
+        // use descending order for the comparator
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>((a, b) -> b - a);
+        assertTrue(bst.insert(10));
+        assertTrue(bst.insert(5));
+        assertTrue(bst.insert(15));
+        assertTrue(bst.insert(3));
+        assertTrue(bst.insert(7));
+        assertTrue(bst.insert(12));
+        assertTrue(bst.insert(18));
+        assertFalse(bst.insert(10)); // Duplicate insert should return false
+        assertFalse(bst.insert(18));  // Duplicate insert should return false
+    }
+
+    @Test
     void testContains() {
         BinarySearchTree<Integer> bst = new BinarySearchTree<>();
         bst.insert(10);
