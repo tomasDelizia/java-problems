@@ -19,8 +19,7 @@ class StackTest {
 
     @Test
     void testPop() {
-        Stack<Integer> stack = new Stack<>();
-        stack.push(1);
+        Stack<Integer> stack = new Stack<>(1);
         stack.push(2);
         stack.push(3);
         assertEquals(3, stack.pop());
