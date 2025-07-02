@@ -64,6 +64,85 @@ public class BinarySearchTree<T> {
         return false;
     }
 
+    public boolean rContains(T value) {
+        return rContains(root, value);
+    }
+
+    private boolean rContains(Node<T> currentNode, T value) {
+        if (currentNode == null) return false;
+        int compare = compare(value, currentNode.value);
+        if (compare == 0) return true;
+        if (compare < 0) return rContains(currentNode.left, value);
+        else return rContains(currentNode.right, value);
+    }
+
+    public void rInsert(T value) {
+        if (root == null) root = new Node<>(value);
+        rInsert(root, value);
+    }
+
+    private Node<T> rInsert(Node<T> currentNode, T value) {
+        if (currentNode == null) return new Node<>(value);
+        int compare = compare(value, currentNode.value);
+        if (compare < 0) {
+            currentNode.left = rInsert(currentNode.left, value);
+        }
+        else if (compare > 0) {
+            currentNode.right = rInsert(currentNode.right, value);
+        }
+        return currentNode;
+    }
+
+    public void remove(T value) {
+        remove(root, value);
+    }
+
+    private Node<T> remove(Node<T> currentNode, T value) {
+        // The value is not in the tree
+        if (currentNode == null) return null;
+
+        int compare = compare(value, currentNode.value);
+        if (compare < 0) {
+            currentNode.left = remove(currentNode.left, value);
+        }
+        else if (compare > 0) {
+            currentNode.right = remove(currentNode.right, value);
+        }
+        // Found the node to remove
+        else {
+            // Check if it's a leaf node (childless) and make it null by returning a null pointer
+            if (currentNode.left == null && currentNode.right == null) {
+                return null;
+            }
+            // Else check if it has a left or child and swap so that it gets garbage collected
+            else if (currentNode.left == null) {
+                currentNode = currentNode.right;
+            }
+            else if (currentNode.right == null) {
+                currentNode = currentNode.left;
+            }
+            // Else the node to remove has two children
+            else {
+                T subTreeMinValue = minValue(currentNode.right);
+                // Swap the current node value with its min value and delete the subTree node.
+                currentNode.value = subTreeMinValue;
+                currentNode.right = remove(currentNode.right, subTreeMinValue);
+            }
+        }
+        return currentNode;
+    }
+
+    public T minValue() {
+        return minValue(root);
+    }
+
+    private T minValue(Node<T> currentNode) {
+        while (currentNode.left != null) {
+            currentNode = currentNode.left;
+        }
+        return currentNode.value;
+    }
+
     @SuppressWarnings("unchecked")
     private int compare(Object k1, Object k2) {
         return (comparator != null) ? comparator.compare((T) k1, (T) k2)
@@ -71,7 +150,7 @@ public class BinarySearchTree<T> {
     }
 
     public static class Node<T> {
-        private final T value;
+        private T value;
         private Node<T> left;
         private Node<T> right;
 

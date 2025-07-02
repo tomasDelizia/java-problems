@@ -2,8 +2,7 @@ package com.tomasdelizia.tree;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BinarySearchTreeTest {
     @Test
@@ -55,6 +54,52 @@ class BinarySearchTreeTest {
         assertTrue(bst.contains(18));
         assertFalse(bst.contains(20)); // Value not in the tree
         assertFalse(bst.contains(1));  // Value not in the tree
+    }
+
+    @Test
+    void testRecursiveInsertContainsAndRemove() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+
+        // Insert nodes using recursive insert
+        bst.rInsert(10);
+        bst.rInsert(5);
+        bst.rInsert(15);
+        bst.rInsert(3);
+        bst.rInsert(7);
+        bst.rInsert(12);
+        bst.rInsert(18);
+
+        // Check if the nodes are present using recursive contains
+        assertTrue(bst.rContains(10));
+        assertTrue(bst.rContains(5));
+        assertTrue(bst.rContains(15));
+        assertTrue(bst.rContains(3));
+        assertTrue(bst.rContains(7));
+        assertTrue(bst.rContains(12));
+        assertTrue(bst.rContains(18));
+        assertFalse(bst.rContains(20)); // Value not in the tree
+        assertFalse(bst.rContains(1));  // Value not in the tree
+
+        // Remove nodes recursively
+        bst.remove(10);
+        assertFalse(bst.rContains(10)); // 10 should be removed
+        bst.remove(5);
+        assertFalse(bst.rContains(5));  // 5 should be removed
+        bst.remove(15);
+        assertFalse(bst.rContains(15)); // 15 should be removed
+    }
+
+    @Test
+    void testMinValue() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        bst.rInsert(10);
+        bst.rInsert(5);
+        bst.rInsert(15);
+        bst.rInsert(3);
+        bst.rInsert(7);
+        bst.rInsert(12);
+        bst.rInsert(18);
+        assertEquals(3, bst.minValue());
     }
 
 }
