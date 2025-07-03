@@ -143,4 +143,11 @@ class BinarySearchTreeTest {
         assertTrue(bst.rContains(7));
     }
 
+    @Test
+    void testInvertBST() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sortedOddLength = new Integer[]{1, 2, 3, 4, 5, 6, 7};
+        bst.sortedArrayToBST(sortedOddLength);
+        bst.invert();
+    }
 }

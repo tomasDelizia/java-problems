@@ -169,6 +169,20 @@ public class BinarySearchTree<T> {
         return current;
     }
 
+    public void invert() {
+        root = invert(root);
+    }
+
+    private Node<T> invert(Node<T> node) {
+        if (node == null) {
+            return null;
+        }
+        Node<T> temp = node.left;
+        node.left = invert(node.right);
+        node.right = invert(temp);
+        return node;
+    }
+
     @SuppressWarnings("unchecked")
     private int compare(Object k1, Object k2) {
         return (comparator != null) ? comparator.compare((T) k1, (T) k2)
