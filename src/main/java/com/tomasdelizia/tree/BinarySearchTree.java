@@ -298,7 +298,19 @@ public class BinarySearchTree<T> {
         return true;
     }
 
+    /**
+     * Finds the k-th smallest element in the binary search tree using in-order DFS traversal.
+     *
+     * @param k the index of the smallest element to find (1-based index).
+     * @return the k-th smallest element in the tree, or null if k is out of bounds.
+     */
     public T kthSmallest(int k) {
+        if (k <= 0) {
+            return null; // k must be a positive integer
+        }
+        if (root == null) {
+            return null; // Tree is empty
+        }
         Stack<T> visited = new Stack<>();
         rDfsInOrderTraverse(root, visited, k);
         if (visited.empty()) {
