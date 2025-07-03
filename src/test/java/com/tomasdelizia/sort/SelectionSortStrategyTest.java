@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class SelectionSortStrategyTest {
-    private final ArraySorter<Integer> sorter = new SelectionSortStrategy<>();
+    private final Sorter<Integer> sorter = new SelectionSortStrategy<>();
     
     @Test
     void insertionSortWithEmptyArray() {

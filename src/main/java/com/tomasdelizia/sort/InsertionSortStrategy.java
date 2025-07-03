@@ -1,6 +1,7 @@
 package com.tomasdelizia.sort;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class InsertionSortStrategy<T> extends BaseSortStrategy<T> {
     public InsertionSortStrategy() {
@@ -14,6 +15,11 @@ public class InsertionSortStrategy<T> extends BaseSortStrategy<T> {
     @Override
     public void sort(T[] values) {
         sort(values, 1);
+    }
+
+    @Override
+    public void sort(List<T> values) {
+
     }
 
     public void sort(T[] values, int increment) {

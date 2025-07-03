@@ -2,11 +2,15 @@ package com.tomasdelizia.sort;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BubbleSortStrategyTest {
-    private final ArraySorter<Integer> sorter = new BubbleSortStrategy<>();
-    private final ArraySorter<Integer> descSorter = new BubbleSortStrategy<>((a, b) -> b - a);
+    private final Sorter<Integer> sorter = new BubbleSortStrategy<>();
+    private final Sorter<Integer> descSorter = new BubbleSortStrategy<>((a, b) -> b - a);
 
     @Test
     void bubbleSortWithEmptyArray() {
@@ -50,6 +54,13 @@ class BubbleSortStrategyTest {
         nums = new Integer[]{7, 7, 7};
         descSorter.sort(nums);
         assertArrayEquals(new Integer[]{7, 7, 7}, nums);
+    }
+
+    @Test
+    void bubbleSortWithLinkedList() {
+        List<Integer> nums = new LinkedList<>(List.of(5, 3, 8, 1, 2));
+        sorter.sort(nums);
+        assertEquals(List.of(1, 2, 3, 5, 8), nums);
     }
 
 }
