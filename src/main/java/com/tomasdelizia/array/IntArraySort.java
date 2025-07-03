@@ -1,6 +1,6 @@
 package com.tomasdelizia.array;
 
-public class ArraySorter {
+public class IntArraySort {
     /**
      * Sorts an array of integers using the bubble sort algorithm. Also known as direct swap sort.
      * Time complexity is O(n^2) in the worst case.

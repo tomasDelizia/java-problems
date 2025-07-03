@@ -1,7 +1,7 @@
 package com.tomasdelizia.problem.greedy;
 
 import com.tomasdelizia.array.ArraySearcher;
-import com.tomasdelizia.array.ArraySorter;
+import com.tomasdelizia.array.IntArraySort;
 import com.tomasdelizia.array.SortOrder;
 
 public class GreedyCoinChange {
@@ -19,7 +19,7 @@ public class GreedyCoinChange {
             return 1;
         }
         // Coins must be sorted in descending order
-        ArraySorter.shellSort(coins, SortOrder.DESCENDING);
+        IntArraySort.shellSort(coins, SortOrder.DESCENDING);
 
         // Greedy rule to find the minimum number of coins
         int count = 0, amount = 0;

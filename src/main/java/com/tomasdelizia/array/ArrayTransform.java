@@ -1,6 +1,6 @@
 package com.tomasdelizia.array;
 
-import static com.tomasdelizia.array.ArraySorter.quickSort;
+import static com.tomasdelizia.array.IntArraySort.quickSort;
 
 public class ArrayTransform {
     /**
