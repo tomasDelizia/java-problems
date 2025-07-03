@@ -102,4 +102,45 @@ class BinarySearchTreeTest {
         assertEquals(3, bst.minValue());
     }
 
+    @Test
+    void testSortedArrayToBSTOddLength() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sortedOddLength = new Integer[]{1, 2, 3, 4, 5, 6, 7};
+        bst.sortedArrayToBST(sortedOddLength);
+        assertTrue(bst.rContains(1));
+        assertTrue(bst.rContains(2));
+        assertTrue(bst.rContains(3));
+        assertTrue(bst.rContains(4));
+        assertTrue(bst.rContains(5));
+        assertTrue(bst.rContains(6));
+        assertTrue(bst.rContains(7));
+    }
+
+    @Test
+    void testSortedArrayToBSTEvenLength() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sortedEvenLength = new Integer[]{1, 2, 3, 4, 5, 6};
+        bst.sortedArrayToBST(sortedEvenLength);
+        assertTrue(bst.rContains(1));
+        assertTrue(bst.rContains(2));
+        assertTrue(bst.rContains(3));
+        assertTrue(bst.rContains(4));
+        assertTrue(bst.rContains(5));
+        assertTrue(bst.rContains(6));
+    }
+
+    @Test
+    void testSortedArrayToBSTDuplicates() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sortedOddLength = new Integer[]{1, 1, 2, 3, 4, 5, 5, 6, 7};
+        bst.sortedArrayToBST(sortedOddLength);
+        assertTrue(bst.rContains(1));
+        assertTrue(bst.rContains(2));
+        assertTrue(bst.rContains(3));
+        assertTrue(bst.rContains(4));
+        assertTrue(bst.rContains(5));
+        assertTrue(bst.rContains(6));
+        assertTrue(bst.rContains(7));
+    }
+
 }

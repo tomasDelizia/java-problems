@@ -69,25 +69,35 @@ public class BinarySearchTree<T> {
     }
 
     private boolean rContains(Node<T> currentNode, T value) {
-        if (currentNode == null) return false;
+        if (currentNode == null) {
+            return false;
+        }
         int compare = compare(value, currentNode.value);
-        if (compare == 0) return true;
-        if (compare < 0) return rContains(currentNode.left, value);
-        else return rContains(currentNode.right, value);
+        if (compare == 0) {
+            return true;
+        }
+        if (compare < 0) {
+            return rContains(currentNode.left, value);
+        } else {
+            return rContains(currentNode.right, value);
+        }
     }
 
     public void rInsert(T value) {
-        if (root == null) root = new Node<>(value);
+        if (root == null) {
+            root = new Node<>(value);
+        }
         rInsert(root, value);
     }
 
     private Node<T> rInsert(Node<T> currentNode, T value) {
-        if (currentNode == null) return new Node<>(value);
+        if (currentNode == null) {
+            return new Node<>(value);
+        }
         int compare = compare(value, currentNode.value);
         if (compare < 0) {
             currentNode.left = rInsert(currentNode.left, value);
-        }
-        else if (compare > 0) {
+        } else if (compare > 0) {
             currentNode.right = rInsert(currentNode.right, value);
         }
         return currentNode;
@@ -99,13 +109,14 @@ public class BinarySearchTree<T> {
 
     private Node<T> remove(Node<T> currentNode, T value) {
         // The value is not in the tree
-        if (currentNode == null) return null;
+        if (currentNode == null) {
+            return null;
+        }
 
         int compare = compare(value, currentNode.value);
         if (compare < 0) {
             currentNode.left = remove(currentNode.left, value);
-        }
-        else if (compare > 0) {
+        } else if (compare > 0) {
             currentNode.right = remove(currentNode.right, value);
         }
         // Found the node to remove
@@ -117,8 +128,7 @@ public class BinarySearchTree<T> {
             // Else check if it has a left or child and swap so that it gets garbage collected
             else if (currentNode.left == null) {
                 currentNode = currentNode.right;
-            }
-            else if (currentNode.right == null) {
+            } else if (currentNode.right == null) {
                 currentNode = currentNode.left;
             }
             // Else the node to remove has two children
@@ -141,6 +151,22 @@ public class BinarySearchTree<T> {
             currentNode = currentNode.left;
         }
         return currentNode.value;
+    }
+
+    public void sortedArrayToBST(T[] values) {
+        root = sortedArrayToBST(values, 0, values.length - 1);
+    }
+
+    private Node<T> sortedArrayToBST(T[] values, int left, int right) {
+        // End of branch
+        if (left > right) {
+            return null;
+        }
+        int center = (left + right) / 2;
+        Node<T> current = new Node<>(values[center]);
+        current.left = sortedArrayToBST(values, left, center - 1);
+        current.right = sortedArrayToBST(values, center + 1, right);
+        return current;
     }
 
     @SuppressWarnings("unchecked")
