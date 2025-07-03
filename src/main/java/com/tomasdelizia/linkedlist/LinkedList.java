@@ -215,6 +215,30 @@ public class LinkedList<T> {
         return slow.value;
     }
 
+    public void bubbleSort() {
+        if (size < 2) return;
+        Node<T> sortedUntil = null;
+        while (sortedUntil != head.next) {
+            Node<T> current = head;
+            while (current.next != sortedUntil) {
+                Node<T> next = current.next;
+                int compare = compare(current.value, next.value);
+                if (compare > 0) {
+                    T temp = current.value;
+                    current.value = next.value;
+                    next.value = temp;
+                }
+                current = current.next;
+            }
+            sortedUntil = current;
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private int compare(Object k1, Object k2) {
+        return ((Comparable<? super T>) k1).compareTo((T) k2);
+    }
+
     public void setHead(Node<T> head) {
         this.head = head;
     }

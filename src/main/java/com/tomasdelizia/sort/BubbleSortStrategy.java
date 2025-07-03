@@ -14,17 +14,20 @@ public class BubbleSortStrategy<T> extends BaseSortStrategy<T> {
     @Override
     public void sort(T[] values) {
         int n = values.length;
-        for (int i = n - 1; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
+        for (int i = 0; i < n; i++) {
+            boolean sorted = true;
+            for (int j = 0; j < n - i - 1; j++) {
                 T current = values[j];
                 T next = values[j + 1];
                 int compare = compare(current, next);
-                // Swap values
                 if (compare > 0) {
+                    // Swap values
+                    sorted = false;
                     values[j] = next;
                     values[j + 1] = current;
                 }
             }
+            if (sorted) break;
         }
     }
 

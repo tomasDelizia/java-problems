@@ -170,4 +170,22 @@ class LinkedListTest {
         LinkedList<Integer> emptyList = new LinkedList<>();
         assertNull(emptyList.findKthFromEnd(1));
     }
+
+    @Test
+    void testBubbleSort() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(5);
+        list.append(3);
+        list.append(8);
+        list.append(1);
+        list.append(2);
+
+        list.bubbleSort();
+
+        assertEquals(1, list.removeFirst());
+        assertEquals(2, list.removeFirst());
+        assertEquals(3, list.removeFirst());
+        assertEquals(5, list.removeFirst());
+        assertEquals(8, list.removeFirst());
+    }
 }
