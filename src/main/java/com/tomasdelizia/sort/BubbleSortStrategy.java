@@ -2,7 +2,7 @@ package com.tomasdelizia.sort;
 
 import java.util.Comparator;
 
-public class BubbleSortStrategy<T> extends BaseSortStrategy<T> implements ArraySorter<T> {
+public class BubbleSortStrategy<T> extends BaseSortStrategy<T> {
     public BubbleSortStrategy(Comparator<T> comparator) {
         super(comparator);
     }
