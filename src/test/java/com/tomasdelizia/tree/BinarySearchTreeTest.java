@@ -2,6 +2,8 @@ package com.tomasdelizia.tree;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BinarySearchTreeTest {
@@ -132,8 +134,8 @@ class BinarySearchTreeTest {
     @Test
     void testSortedArrayToBSTDuplicates() {
         BinarySearchTree<Integer> bst = new BinarySearchTree<>();
-        Integer[] sortedOddLength = new Integer[]{1, 1, 2, 3, 4, 5, 5, 6, 7};
-        bst.sortedArrayToBST(sortedOddLength);
+        Integer[] sorted = new Integer[]{1, 1, 2, 3, 4, 5, 5, 6, 7};
+        bst.sortedArrayToBST(sorted);
         assertTrue(bst.rContains(1));
         assertTrue(bst.rContains(2));
         assertTrue(bst.rContains(3));
@@ -146,8 +148,19 @@ class BinarySearchTreeTest {
     @Test
     void testInvertBST() {
         BinarySearchTree<Integer> bst = new BinarySearchTree<>();
-        Integer[] sortedOddLength = new Integer[]{1, 2, 3, 4, 5, 6, 7};
-        bst.sortedArrayToBST(sortedOddLength);
+        Integer[] sorted = new Integer[]{1, 2, 3, 4, 5, 6, 7};
+        bst.sortedArrayToBST(sorted);
         bst.invert();
+    }
+
+    @Test
+    void testBfs() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sorted = new Integer[]{1, 2, 3, 4, 5, 6, 7};
+        bst.sortedArrayToBST(sorted);
+        List<Integer> visited = bst.bfs();
+        List<Integer> expected = List.of(4, 2, 6, 1, 3, 5, 7);
+        assertEquals(7, visited.size());
+        assertEquals(expected, visited);
     }
 }

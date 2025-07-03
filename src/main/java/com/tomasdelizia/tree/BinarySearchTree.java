@@ -1,7 +1,6 @@
 package com.tomasdelizia.tree;
 
-import java.util.Comparator;
-import java.util.Objects;
+import java.util.*;
 
 public class BinarySearchTree<T> {
     private final Comparator<? super T> comparator;
@@ -151,6 +150,24 @@ public class BinarySearchTree<T> {
             currentNode = currentNode.left;
         }
         return currentNode.value;
+    }
+
+    public List<T> bfs() {
+        Node<T> current = root;
+        Queue<Node<T>> queue = new LinkedList<>();
+        List<T> visited = new ArrayList<>();
+        queue.offer(current);
+        while (!queue.isEmpty()) {
+            current = queue.poll();
+            visited.add(current.value);
+            if (current.left != null) {
+                queue.offer(current.left);
+            }
+            if (current.right != null) {
+                queue.offer(current.right);
+            }
+        }
+        return visited;
     }
 
     public void sortedArrayToBST(T[] values) {
