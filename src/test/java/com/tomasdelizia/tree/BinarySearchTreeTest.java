@@ -207,4 +207,21 @@ class BinarySearchTreeTest {
         assertEquals(7, visited.size());
         assertEquals(expected, visited);
     }
+
+    @Test
+    void testIsValidBST() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sorted = new Integer[]{1, 2, 3, 4, 5, 6, 7};
+        bst.sortedArrayToBST(sorted);
+        assertTrue(bst.isValidBST());
+    }
+
+    @Test
+    void testKthSmallestWithInOrderDfs() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sorted = new Integer[]{1, 2, 4, 4, 5, 6, 7};
+        bst.sortedArrayToBST(sorted);
+        int kthSmallest = bst.kthSmallest(3);
+        assertEquals(4, kthSmallest);
+    }
 }

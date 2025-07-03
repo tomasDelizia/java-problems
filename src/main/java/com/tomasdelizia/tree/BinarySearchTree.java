@@ -278,6 +278,48 @@ public class BinarySearchTree<T> {
         }
     }
 
+    /**
+     * Checks if the binary search tree is a valid BST.
+     * A valid BST is defined as a tree where for every node:
+     * - The left subtree contains only nodes with values less than the node's value.
+     * - The right subtree contains only nodes with values greater than the node's value.
+     *
+     * @return true if the tree is a valid BST, false otherwise.
+     */
+    public boolean isValidBST() {
+        List<T> inOrderValues = rDfsInOrder();
+        int n = inOrderValues.size();
+        for (int i = 0; i < n - 2; i++) {
+            int compare = compare(inOrderValues.get(i), inOrderValues.get(i + 1));
+            if (compare > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public T kthSmallest(int k) {
+        Stack<T> visited = new Stack<>();
+        rDfsInOrderTraverse(root, visited, k);
+        if (visited.empty()) {
+            return null;
+        }
+        return visited.pop();
+    }
+
+    private void rDfsInOrderTraverse(Node<T> node, Stack<T> visited, int k) {
+        if (node.left != null) {
+            rDfsInOrderTraverse(node.left, visited, k);
+        }
+        if (k == visited.size()) {
+            return;
+        }
+        visited.push(node.value);
+        if (node.right != null) {
+            rDfsInOrderTraverse(node.right, visited, k);
+        }
+    }
+
     private Node<T> sortedArrayToBST(T[] values, int left, int right) {
         // End of branch
         if (left > right) {
