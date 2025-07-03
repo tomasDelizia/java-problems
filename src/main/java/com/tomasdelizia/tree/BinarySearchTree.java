@@ -152,6 +152,11 @@ public class BinarySearchTree<T> {
         return currentNode.value;
     }
 
+    /**
+     * Performs a breadth-first search (BFS) traversal of the binary search tree.
+     *
+     * @return List of values in the order they were visited during BFS.
+     */
     public List<T> bfs() {
         Node<T> current = root;
         Queue<Node<T>> queue = new LinkedList<>();
@@ -170,8 +175,107 @@ public class BinarySearchTree<T> {
         return visited;
     }
 
+    /**
+     * Performs a pre-order depth-first search (DFS) traversal of the binary search tree.
+     *
+     * @return List of values in the order they were visited during DFS.
+     */
+    public List<T> dfsPreOrder() {
+        List<T> visited = new ArrayList<>();
+        Stack<Node<T>> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.empty()) {
+            Node<T> current = stack.pop();
+            visited.add(current.value);
+            if (current.right != null) {
+                stack.push(current.right);
+            }
+            if (current.left != null) {
+                stack.push(current.left);
+            }
+        }
+        return visited;
+    }
+
+    /**
+     * Performs a recursive, pre-order depth-first search (DFS) traversal of the binary search tree.
+     *
+     * @return List of values in the order they were visited during DFS.
+     */
+    public List<T> rDfsPreOrder() {
+        List<T> visited = new ArrayList<>();
+        rDfsPreOrderTraverse(root, visited);
+        /* // We can add a class within a method and invoke a constructor to simulate a method within a method.
+        class Traverse {
+            Traverse(Node<T> current) {
+                visited.add(current.value);
+                if (current.left != null) {
+                    new Traverse(current.left);
+                }
+                if (current.right != null) {
+                    new Traverse(current.right);
+                }
+            }
+        }
+        new Traverse(root);*/
+        return visited;
+    }
+
+    private void rDfsPreOrderTraverse(Node<T> node, List<T> visited) {
+        visited.add(node.value);
+        if (node.left != null) {
+            rDfsPreOrderTraverse(node.left, visited);
+        }
+        if (node.right != null) {
+            rDfsPreOrderTraverse(node.right, visited);
+        }
+    }
+
+    /**
+     * Performs a post-order depth-first search (DFS) traversal of the binary search tree.
+     *
+     * @return List of values in the order they were visited during DFS.
+     */
+    public List<T> rDfsPostOrder() {
+        List<T> visited = new ArrayList<>();
+        rDfsPostOrderTraverse(root, visited);
+        return visited;
+    }
+
+    private void rDfsPostOrderTraverse(Node<T> node, List<T> visited) {
+        if (node.left != null) {
+            rDfsPostOrderTraverse(node.left, visited);
+        }
+        if (node.right != null) {
+            rDfsPostOrderTraverse(node.right, visited);
+        }
+        visited.add(node.value);
+    }
+
     public void sortedArrayToBST(T[] values) {
         root = sortedArrayToBST(values, 0, values.length - 1);
+    }
+
+    /**
+     * Performs a recursive, in-order depth-first search (DFS) traversal of the binary search tree.
+     *
+     * @return List of values in the order they were visited during DFS.
+     */
+    public List<T> rDfsInOrder() {
+        List<T> visited = new ArrayList<>();
+        rDfsInOrderTraverse(root, visited);
+        return visited;
+    }
+
+    private void rDfsInOrderTraverse(Node<T> node, List<T> visited) {
+        if (node.left != null) {
+            rDfsInOrderTraverse(node.left, visited);
+        }
+        // Add the current node value after visiting the left child
+        visited.add(node.value);
+        if (node.right != null) {
+            rDfsInOrderTraverse(node.right, visited);
+        }
     }
 
     private Node<T> sortedArrayToBST(T[] values, int left, int right) {

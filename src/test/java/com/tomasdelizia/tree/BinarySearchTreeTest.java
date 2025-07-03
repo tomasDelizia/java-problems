@@ -163,4 +163,48 @@ class BinarySearchTreeTest {
         assertEquals(7, visited.size());
         assertEquals(expected, visited);
     }
+
+    @Test
+    void testDfsPreOrder() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sorted = new Integer[]{1, 2, 3, 4, 5, 6, 7};
+        bst.sortedArrayToBST(sorted);
+        List<Integer> visited = bst.dfsPreOrder();
+        List<Integer> expected = List.of(4, 2, 1, 3, 6, 5, 7);
+        assertEquals(7, visited.size());
+        assertEquals(expected, visited);
+    }
+
+    @Test
+    void testRecursiveDfsPreOrder() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sorted = new Integer[]{1, 2, 3, 4, 5, 6, 7};
+        bst.sortedArrayToBST(sorted);
+        List<Integer> visited = bst.rDfsPreOrder();
+        List<Integer> expected = List.of(4, 2, 1, 3, 6, 5, 7);
+        assertEquals(7, visited.size());
+        assertEquals(expected, visited);
+    }
+
+    @Test
+    void testRecursiveDfsPostOrder() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sorted = new Integer[]{1, 2, 3, 4, 5, 6, 7};
+        bst.sortedArrayToBST(sorted);
+        List<Integer> visited = bst.rDfsPostOrder();
+        List<Integer> expected = List.of(1, 3, 2, 5, 7, 6, 4);
+        assertEquals(7, visited.size());
+        assertEquals(expected, visited);
+    }
+
+    @Test
+    void testRecursiveDfsInOrder() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sorted = new Integer[]{1, 2, 3, 4, 5, 6, 7};
+        bst.sortedArrayToBST(sorted);
+        List<Integer> visited = bst.rDfsInOrder();
+        List<Integer> expected = List.of(1, 2, 3, 4, 5, 6, 7);
+        assertEquals(7, visited.size());
+        assertEquals(expected, visited);
+    }
 }
