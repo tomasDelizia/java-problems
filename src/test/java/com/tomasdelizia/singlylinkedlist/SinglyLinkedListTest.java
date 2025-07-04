@@ -1,14 +1,14 @@
-package com.tomasdelizia.linkedlist;
+package com.tomasdelizia.singlylinkedlist;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LinkedListTest {
+class SinglyLinkedListTest {
     @Test
     void testLinkedList() {
         // Test creating a linked list with a single element
-        LinkedList<Integer> list = new LinkedList<>(5);
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>(5);
         list.printList();
         // Test append
         list.append(10);
@@ -31,7 +31,7 @@ class LinkedListTest {
 
     @Test
     void testGetByIndex() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(1);
         list.append(2);
         list.append(3);
@@ -43,7 +43,7 @@ class LinkedListTest {
 
     @Test
     void testSetByIndexAndValue() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(1);
         list.append(2);
         list.append(3);
@@ -60,7 +60,7 @@ class LinkedListTest {
 
     @Test
     void testInsertByIndexAndValue() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(1);
         list.append(3);
         list.insertValue(1, 2); // Insert 2 at index 1
@@ -73,7 +73,7 @@ class LinkedListTest {
 
     @Test
     void testRemoveAtIndex() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(1);
         list.append(2);
         list.append(3);
@@ -87,7 +87,7 @@ class LinkedListTest {
 
     @Test
     void testReverse() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(1);
         list.append(2);
         list.append(3);
@@ -101,14 +101,14 @@ class LinkedListTest {
         assertEquals(1, list.getValue(2));
 
         // Test reversing an empty list
-        LinkedList<Integer> emptyList = new LinkedList<>();
+        SinglyLinkedList<Integer> emptyList = new SinglyLinkedList<>();
         emptyList.reverse();
         assertNull(emptyList.getValue(0)); // Should still be empty
     }
 
     @Test
     void testFindMiddleValue() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(1);
         list.append(2);
         list.append(3);
@@ -135,15 +135,15 @@ class LinkedListTest {
 
     @Test
     void testHasLoop() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(1);
         list.append(2);
         list.append(3);
         assertFalse(list.hasLoop());
 
         // Create a loop for testing
-        LinkedList.Node<Integer> node1 = new LinkedList.Node<>(4);
-        LinkedList.Node<Integer> node2 = new LinkedList.Node<>(5);
+        SinglyLinkedList.Node<Integer> node1 = new SinglyLinkedList.Node<>(4);
+        SinglyLinkedList.Node<Integer> node2 = new SinglyLinkedList.Node<>(5);
         node1.setNext(node2);
         node2.setNext(node1); // Creates a loop
         list.setHead(node1);
@@ -151,13 +151,13 @@ class LinkedListTest {
         assertTrue(list.hasLoop());
 
         // Test with an empty list
-        LinkedList<Integer> emptyList = new LinkedList<>();
+        SinglyLinkedList<Integer> emptyList = new SinglyLinkedList<>();
         assertFalse(emptyList.hasLoop());
     }
 
     @Test
     void testFindKthFromEnd() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(1);
         list.append(2);
         list.append(3);
@@ -167,13 +167,13 @@ class LinkedListTest {
         assertNull(list.findKthFromEnd(4)); // Out of bounds
 
         // Test with an empty list
-        LinkedList<Integer> emptyList = new LinkedList<>();
+        SinglyLinkedList<Integer> emptyList = new SinglyLinkedList<>();
         assertNull(emptyList.findKthFromEnd(1));
     }
 
     @Test
     void testBubbleSort() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(5);
         list.append(3);
         list.append(8);
@@ -191,7 +191,7 @@ class LinkedListTest {
 
     @Test
     void testSelectionSort() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(5);
         list.append(3);
         list.append(8);
@@ -209,7 +209,7 @@ class LinkedListTest {
 
     @Test
     void testInsertionSort() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(5);
         list.append(3);
         list.append(8);
@@ -227,12 +227,12 @@ class LinkedListTest {
 
     @Test
     void testMergeAlreadySorted() {
-        LinkedList<Integer> list = new LinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.append(1);
         list.append(3);
         list.append(6);
 
-        LinkedList<Integer> list2 = new LinkedList<>();
+        SinglyLinkedList<Integer> list2 = new SinglyLinkedList<>();
         list2.append(2);
         list2.append(5);
         list2.append(10);

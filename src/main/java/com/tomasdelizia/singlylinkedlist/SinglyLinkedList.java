@@ -1,18 +1,18 @@
-package com.tomasdelizia.linkedlist;
+package com.tomasdelizia.singlylinkedlist;
 
-public class LinkedList<T> {
+public class SinglyLinkedList<T> {
     private int size;
     private Node<T> head;
     private Node<T> tail;
 
-    public LinkedList(T value) {
+    public SinglyLinkedList(T value) {
         Node<T> node = new Node<>(value);
         this.head = node;
         this.tail = node;
         this.size = 1;
     }
 
-    public LinkedList() {
+    public SinglyLinkedList() {
         this.size = 0;
     }
 
@@ -313,7 +313,7 @@ public class LinkedList<T> {
         tail = temp;
     }
 
-    public void merge(LinkedList<T> other) {
+    public void merge(SinglyLinkedList<T> other) {
         Node<T> otherHead = other.head;
         Node<T> dummy = new Node<>(null);
         Node<T> current = dummy;
