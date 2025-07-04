@@ -281,6 +281,38 @@ public class LinkedList<T> {
         tail = current;
     }
 
+    public void insertionSort() {
+        if (size <= 2) {
+            return;
+        }
+        Node<T> sortedListHead = head;
+        Node<T> unsortedListHead = head.next;
+        // Detach sorted part from sorted part
+        sortedListHead.next = null;
+        while (unsortedListHead != null) {
+            Node<T> current = unsortedListHead;
+            unsortedListHead = unsortedListHead.next;
+            int compare = compare(current.value, sortedListHead.value);
+            if (compare < 0) {
+                current.next = sortedListHead;
+                sortedListHead = current;
+            } else {
+                Node<T> searchPointer = sortedListHead;
+                while (searchPointer.hasNext() && compare(current.value, searchPointer.next.value) > 0) {
+                    searchPointer = searchPointer.next;
+                }
+                current.next = searchPointer.next;
+                searchPointer.next = current;
+            }
+        }
+        head = sortedListHead;
+        Node<T> temp = head;
+        while (temp.hasNext()) {
+            temp = temp.next;
+        }
+        tail = temp;
+    }
+
     @SuppressWarnings("unchecked")
     private int compare(Object k1, Object k2) {
         return ((Comparable<? super T>) k1).compareTo((T) k2);
