@@ -177,46 +177,68 @@ public class LinkedList<T> {
     }
 
     public T findMiddleValue() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         Node<T> slow = head, fast = head;
         while (fast.hasNext()) {
             fast = fast.next;
-            if (fast.hasNext()) fast = fast.next;
-            else return slow.value;
+            if (fast.hasNext()) {
+                fast = fast.next;
+            } else {
+                return slow.value;
+            }
             slow = slow.next;
         }
         return slow.value;
     }
 
     public boolean hasLoop() {
-        if (size == 0) return false;
+        if (size == 0) {
+            return false;
+        }
         Node<T> slow = head, fast = head;
         while (fast.hasNext()) {
             fast = fast.next;
-            if (fast.hasNext()) fast = fast.next;
-            else return false;
+            if (fast.hasNext()) {
+                fast = fast.next;
+            } else {
+                return false;
+            }
             slow = slow.next;
-            if (slow.value.equals(fast.value)) return true;
+            if (slow.value.equals(fast.value)) {
+                return true;
+            }
         }
         return false;
     }
 
     public T findKthFromEnd(int k) {
-        if (head == null) return null;
-        if (k == 1) return tail.value;
+        if (head == null) {
+            return null;
+        }
+        if (k == 1) {
+            return tail.value;
+        }
         Node<T> slow = head, fast = head;
         while (fast.hasNext()) {
             for (int i = 0; i < k - 1; i++) {
-                if (!fast.hasNext()) return null;
+                if (!fast.hasNext()) {
+                    return null;
+                }
                 fast = fast.next;
             }
-            if (fast.hasNext()) slow = slow.next;
+            if (fast.hasNext()) {
+                slow = slow.next;
+            }
         }
         return slow.value;
     }
 
     public void bubbleSort() {
-        if (size < 2) return;
+        if (size < 2) {
+            return;
+        }
         Node<T> sortedUntil = null;
         while (sortedUntil != head.next) {
             Node<T> current = head;
@@ -232,6 +254,31 @@ public class LinkedList<T> {
             }
             sortedUntil = current;
         }
+    }
+
+    public void selectionSort() {
+        if (size <= 2) {
+            return;
+        }
+        Node<T> current = head;
+        while (current != null && current.hasNext()) {
+            Node<T> smallest = current;
+            Node<T> innerCurrent = current.next;
+            while (innerCurrent != null) {
+                int compare = compare(innerCurrent.value, smallest.value);
+                if (compare < 0) {
+                    smallest = innerCurrent;
+                }
+                innerCurrent = innerCurrent.next;
+            }
+            if (smallest != current) {
+                T temp = smallest.value;
+                smallest.value = current.value;
+                current.value = temp;
+            }
+            current = current.next;
+        }
+        tail = current;
     }
 
     @SuppressWarnings("unchecked")

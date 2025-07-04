@@ -188,4 +188,22 @@ class LinkedListTest {
         assertEquals(5, list.removeFirst());
         assertEquals(8, list.removeFirst());
     }
+
+    @Test
+    void testSelectionSort() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(5);
+        list.append(3);
+        list.append(8);
+        list.append(1);
+        list.append(2);
+
+        list.selectionSort();
+
+        assertEquals(1, list.removeFirst());
+        assertEquals(2, list.removeFirst());
+        assertEquals(3, list.removeFirst());
+        assertEquals(5, list.removeFirst());
+        assertEquals(8, list.removeFirst());
+    }
 }
