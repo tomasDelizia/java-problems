@@ -313,6 +313,31 @@ public class LinkedList<T> {
         tail = temp;
     }
 
+    public void merge(LinkedList<T> other) {
+        Node<T> otherHead = other.head;
+        Node<T> dummy = new Node<>(null);
+        Node<T> current = dummy;
+        while (head != null && otherHead != null) {
+            int compare = compare(head.value, otherHead.value);
+            if (compare < 0) {
+                current.next = head;
+                head = head.next;
+            } else {
+                current.next = otherHead;
+                otherHead = otherHead.next;
+            }
+            current = current.next;
+        }
+        if (head != null) {
+            current.next = head;
+        } else {
+            current.next = otherHead;
+            tail = other.tail;
+        }
+        head = dummy.next;
+        size += other.size;
+    }
+
     @SuppressWarnings("unchecked")
     private int compare(Object k1, Object k2) {
         return ((Comparable<? super T>) k1).compareTo((T) k2);

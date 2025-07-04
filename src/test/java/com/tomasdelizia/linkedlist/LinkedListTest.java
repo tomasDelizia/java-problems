@@ -224,4 +224,26 @@ class LinkedListTest {
         assertEquals(5, list.removeFirst());
         assertEquals(8, list.removeFirst());
     }
+
+    @Test
+    void testMergeAlreadySorted() {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.append(1);
+        list.append(3);
+        list.append(6);
+
+        LinkedList<Integer> list2 = new LinkedList<>();
+        list2.append(2);
+        list2.append(5);
+        list2.append(10);
+
+        list.merge(list2);
+
+        assertEquals(1, list.removeFirst());
+        assertEquals(2, list.removeFirst());
+        assertEquals(3, list.removeFirst());
+        assertEquals(5, list.removeFirst());
+        assertEquals(6, list.removeFirst());
+        assertEquals(10, list.removeFirst());
+    }
 }
