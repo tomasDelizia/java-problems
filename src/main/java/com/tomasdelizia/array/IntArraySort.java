@@ -240,10 +240,7 @@ public class IntArraySort {
                     }
                     if (i <= j) {
                         // Swap elements that are higher than pivot to the right and viceversa
-                        int largerThanPivot = nums[i];
-                        int lowerThanPivot = nums[j];
-                        nums[i] = lowerThanPivot;
-                        nums[j] = largerThanPivot;
+                        swap(nums, i, j);
                         i++;
                         j--;
                     }
@@ -257,10 +254,7 @@ public class IntArraySort {
                     }
                     if (i <= j) {
                         // Swap elements that are higher than pivot to the left and viceversa
-                        int largerThanPivot = nums[j];
-                        int lowerThanPivot = nums[i];
-                        nums[j] = lowerThanPivot;
-                        nums[i] = largerThanPivot;
+                        swap(nums, i, j);
                         i++;
                         j--;
                     }
@@ -283,22 +277,48 @@ public class IntArraySort {
         int center = (left + right) / 2;
         if (nums[right] < nums[left]) {
             // Swap left and right if left is greater than right
-            int larger = nums[left];
-            nums[left] = nums[right];
-            nums[right] = larger;
+            swap(nums, left, right);
         }
         if (nums[center] < nums[left]) {
             // Swap center and left if center is less than left
-            int larger = nums[left];
-            nums[left] = nums[center];
-            nums[center] = larger;
+            swap(nums, left, center);
         }
         if (nums[center] > nums[right]) {
             // Swap center and right if center is greater than right
-            int lower = nums[right];
-            nums[right] = nums[center];
-            nums[center] = lower;
+            swap(nums, center, right);
         }
         return nums[center]; // Return the median of the three values as the pivot
+    }
+
+    private static void swap(int[] array, int first, int second) {
+        int temp = array[first];
+        array[first] = array[second];
+        array[second] = temp;
+    }
+
+    private static int pivot(int[] array, int pivotIndex, int endIndex) {
+        int swapIndex = pivotIndex;
+        for (int i = pivotIndex + 1; i <= endIndex; i++) {
+            if (array[i] < array[pivotIndex]) {
+                swapIndex++;
+                swap(array, swapIndex, i);
+            }
+        }
+        swap(array, pivotIndex, swapIndex);
+        return swapIndex;
+    }
+
+    public static void quickSortAlt(int[] nums) {
+        if (nums == null || nums.length <= 1) return;
+        int n = nums.length;
+        quick(nums, 0, n-1);
+    }
+
+    private static void quick(int[] array, int left, int right) {
+        if (left < right) {
+            int pivotIndex = pivot(array, left, right);
+            quick(array, left, pivotIndex-1);
+            quick(array, pivotIndex+1, right);
+        }
     }
 }

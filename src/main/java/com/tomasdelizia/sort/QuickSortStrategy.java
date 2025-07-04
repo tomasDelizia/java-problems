@@ -18,10 +18,7 @@ public class QuickSortStrategy<T> extends BaseSortStrategy<T> {
             while (compare(pivot, values[j]) < 0 && j > left) j--;
             if (i <= j) {
                 // Swap elements that are higher than pivot to the right and viceversa
-                T largerThanPivot = values[i];
-                T lowerThanPivot = values[j];
-                values[i] = lowerThanPivot;
-                values[j] = largerThanPivot;
+                swap(values, i, j);
                 i++;
                 j--;
             }
@@ -41,22 +38,22 @@ public class QuickSortStrategy<T> extends BaseSortStrategy<T> {
         int center = (left + right) / 2;
         if (compare(values[right], values[left]) < 0) {
             // Swap left and right if left is greater than right
-            T larger = values[left];
-            values[left] = values[right];
-            values[right] = larger;
+           swap(values, right, left);
         }
         if (compare(values[center], values[left]) < 0) {
             // Swap center and left if center is less than left
-            T larger = values[left];
-            values[left] = values[center];
-            values[center] = larger;
+           swap(values, center, left);
         }
         if (compare(values[center], values[right]) > 0) {
             // Swap center and right if center is greater than right
-            T lower = values[right];
-            values[right] = values[center];
-            values[center] = lower;
+            swap(values, center, right);
         }
         return values[center]; // Return the median of the three values as the pivot
+    }
+
+    private void swap(T[] values, int firstIndex, int secondIndex) {
+        T temp = values[firstIndex];
+        values[firstIndex] = values[secondIndex];
+        values[secondIndex] = temp;
     }
 }

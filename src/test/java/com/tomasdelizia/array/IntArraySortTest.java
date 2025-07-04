@@ -218,4 +218,33 @@ class IntArraySortTest {
         IntArraySort.quickSort(nums, SortOrder.DESCENDING);
         assertArrayEquals(new int[]{7, 7, 7}, nums);
     }
+
+    @Test
+    void quickSortAltWithEmptyArray() {
+        int[] nums = {};
+        IntArraySort.quickSortAlt(nums);
+        assertArrayEquals(new int[]{}, nums);
+    }
+
+    @Test
+    void quickSortAltWithSingleElementArray() {
+        int[] nums = {5};
+        IntArraySort.quickSortAlt(nums);
+        assertArrayEquals(new int[]{5}, nums);
+    }
+
+    @Test
+    void quickSortAltWithMultipleElements() {
+        int[] nums = {5, 8, 3, 7, 6, 9, 2};
+        IntArraySort.quickSortAlt(nums);
+        assertArrayEquals(new int[]{2, 3, 5, 6, 7, 8, 9}, nums);
+
+        nums = new int[]{10, -1, 0, 5};
+        IntArraySort.quickSortAlt(nums);
+        assertArrayEquals(new int[]{-1, 0, 5, 10}, nums);
+
+        nums = new int[]{7, 7, 7};
+        IntArraySort.quickSortAlt(nums);
+        assertArrayEquals(new int[]{7, 7, 7}, nums);
+    }
 }
