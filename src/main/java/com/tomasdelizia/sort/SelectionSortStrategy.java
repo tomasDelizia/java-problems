@@ -1,8 +1,5 @@
 package com.tomasdelizia.sort;
 
-
-import java.util.List;
-
 public class SelectionSortStrategy<T> extends BaseSortStrategy<T> {
     public SelectionSortStrategy() {
         super();
@@ -22,9 +19,5 @@ public class SelectionSortStrategy<T> extends BaseSortStrategy<T> {
                 values[j] = larger;
             }
         }
-    }
-
-    @Override
-    public void sort(List<T> values) {
     }
 }

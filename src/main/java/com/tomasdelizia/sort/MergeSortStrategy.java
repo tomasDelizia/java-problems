@@ -1,7 +1,6 @@
 package com.tomasdelizia.sort;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class MergeSortStrategy<T> extends BaseSortStrategy<T> {
     @SuppressWarnings("unchecked")
@@ -54,10 +53,5 @@ public class MergeSortStrategy<T> extends BaseSortStrategy<T> {
         int n = values.length;
         T[] sorted = mergeSort(values);
         System.arraycopy(sorted, 0, values, 0, n);
-    }
-
-    @Override
-    public void sort(List<T> values) {
-
     }
 }
