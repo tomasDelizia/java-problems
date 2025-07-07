@@ -76,7 +76,7 @@ public class NAryTree<T> {
         return visited;
     }
 
-    public static class Node<T> {
+    static class Node<T> {
         private final T value;
         private List<Node<T>> children;
 

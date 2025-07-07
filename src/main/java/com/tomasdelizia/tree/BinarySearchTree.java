@@ -364,7 +364,7 @@ public class BinarySearchTree<T> {
                 : ((Comparable<? super T>) k1).compareTo((T) k2);
     }
 
-    public static class Node<T> {
+    static class Node<T> {
         private T value;
         private Node<T> left;
         private Node<T> right;
