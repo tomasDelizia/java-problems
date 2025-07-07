@@ -24,12 +24,11 @@ public class NumberOfIslands {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 char current = grid[i][j];
-                if (current == '1' && !visited[i][j]) {
-                    Cell cell = new Cell(i, j);
-                    // Traverse the matrix using BFS until there are no island cells to visit.
-                    bfs(cell, grid, visited);
-                    islandCount++;
-                }
+                if (current == '0' || visited[i][j]) continue;
+                Cell cell = new Cell(i, j);
+                // Traverse the matrix using BFS until there are no island cells to visit.
+                bfs(cell, grid, visited);
+                islandCount++;
             }
         }
         return islandCount;
