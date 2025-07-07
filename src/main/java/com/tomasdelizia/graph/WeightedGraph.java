@@ -98,6 +98,63 @@ public class WeightedGraph<T> {
         return new FullPathInfo<>(pathMap.get(end).distance(), path);
     }
 
+    public WeightedGraph<T> minimumSpanningTree() {
+        T start = adjacencyList.keySet().stream().findFirst().orElse(null);
+        WeightedGraph<T> mst = new WeightedGraph<>();
+        if (start == null) return mst; // Return empty graph if no vertices exist
+        Set<T> visited = new HashSet<>();
+        PriorityQueue<Edge<T>> minEdgesHeap = new PriorityQueue<>(Comparator.comparingInt(e -> e.weight));
+
+        // Add all vertices to the new MST graph (without edges yet)
+        for (T vertex : adjacencyList.keySet()) {
+            mst.addVertex(vertex);
+        }
+
+        visited.add(start);
+        minEdgesHeap.addAll(adjacencyList.get(start));
+
+        while (!minEdgesHeap.isEmpty()) {
+            Edge<T> minimumEdge = minEdgesHeap.poll();
+
+            if (visited.contains(minimumEdge.target)) continue;
+
+            // Find the originating vertex of the edge
+            T from = null;
+            for (T node : visited) {
+                for (Edge<T> e : adjacencyList.get(node)) {
+                    if (e.target.equals(minimumEdge.target) && e.weight == minimumEdge.weight) {
+                        from = node;
+                        break;
+                    }
+                }
+                if (from != null) break;
+            }
+
+            if (from == null) continue; // No valid edge found
+
+            // Add the edge to the MST
+            mst.addEdge(from, minimumEdge.target, minimumEdge.weight);
+            visited.add(minimumEdge.target);
+
+            // Add new edges from the added vertex
+            for (Edge<T> nextEdge : adjacencyList.get(minimumEdge.target)) {
+                if (!visited.contains(nextEdge.target)) {
+                    minEdgesHeap.add(nextEdge);
+                }
+            }
+        }
+
+        return mst;
+    }
+
+    public int getEdgesCount() {
+        int count = 0;
+        for (List<Edge<T>> edges : adjacencyList.values()) {
+            count += edges.size();
+        }
+        return count / 2; // Each edge is counted twice in an undirected graph
+    }
+
     record NodeDistance<T>(T vertex, int distance) {}
 
     record Edge<T>(T target, int weight) {}

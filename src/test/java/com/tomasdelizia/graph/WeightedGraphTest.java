@@ -30,4 +30,30 @@ class WeightedGraphTest {
         assertEquals(expectedPath, graph.reconstructPath(distances, "B"));
     }
 
+    @Test
+    void testMinSpanTree() {
+        WeightedGraph<String> graph = new WeightedGraph<>();
+        assertTrue(graph.addVertex("A"));
+        assertTrue(graph.addVertex("B"));
+        assertTrue(graph.addVertex("C"));
+        assertTrue(graph.addVertex("D"));
+        assertTrue(graph.addVertex("E"));
+        assertTrue(graph.addVertex("F"));
+        assertTrue(graph.addVertex("G"));
+        assertTrue(graph.addEdge("A", "B", 2));
+        assertTrue(graph.addEdge("A", "D", 5));
+        assertTrue(graph.addEdge("A", "C", 4));
+        assertTrue(graph.addEdge("B", "D", 2));
+        assertTrue(graph.addEdge("B", "E", 6));
+        assertTrue(graph.addEdge("C", "D", 1));
+        assertTrue(graph.addEdge("C", "F", 5));
+        assertTrue(graph.addEdge("D", "E", 4));
+        assertTrue(graph.addEdge("D", "F", 3));
+        assertTrue(graph.addEdge("E", "F", 1));
+        assertTrue(graph.addEdge("E", "G", 4));
+        assertTrue(graph.addEdge("F", "G", 8));
+
+        WeightedGraph<String> mst = graph.minimumSpanningTree();
+        assertEquals(7-1, mst.getEdgesCount());
+    }
 }
