@@ -98,6 +98,29 @@ public class WeightedGraph<T> {
         return path;
     }
 
+    /**
+     * Returns the distance of the shortest path from the start vertex to the end vertex.
+     * @param pathMap a map containing the shortest paths from the start vertex
+     * @param end the ending vertex
+     * @return the distance of the shortest path, or Integer.MAX_VALUE if no path exists
+     */
+    public int pathValue(Map<T, PathInfo<T>> pathMap, T end) {
+        PathInfo<T> pathInfo = pathMap.get(end);
+        if (pathInfo == null) {
+            return Integer.MAX_VALUE;
+        }
+        return pathInfo.distance();
+    }
+
+    public int pathValue(T start, T end) {
+        Map<T, PathInfo<T>> pathMap = dijkstraShortestPath(start);
+        PathInfo<T> pathInfo = pathMap.get(end);
+        if (pathInfo == null) {
+            return Integer.MAX_VALUE;
+        }
+        return pathInfo.distance();
+    }
+
     record NodeDistance<T>(T vertex, int distance) {}
 
     record Edge<T>(T target, int weight) {}

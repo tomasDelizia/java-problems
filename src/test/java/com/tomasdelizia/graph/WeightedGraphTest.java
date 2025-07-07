@@ -27,6 +27,8 @@ class WeightedGraphTest {
         assertEquals("A", distances.get("C").predecessor());
         assertEquals(List.of("A", "C", "B"), graph.reconstructPath("A", "B"));
         assertEquals(List.of("A", "C", "B"), graph.reconstructPath(distances, "B"));
+        assertEquals(3, graph.pathValue("A", "B"));
+        assertEquals(3, graph.pathValue(distances, "B"));
     }
 
 }
