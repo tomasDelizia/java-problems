@@ -71,16 +71,16 @@ public class WeightedGraph<T> {
      * Reconstructs the shortest path from start to end using the results of Dijkstra's algorithm.
      * @param start the starting vertex
      * @param end the ending vertex
-     * @return a list of vertices representing the shortest path from start to end
+     * @return a list of vertices representing the shortest path from start to end and the total distance
      */
-    public List<T> reconstructPath(T start, T end) {
+    public FullPathInfo<T> reconstructPath(T start, T end) {
         Map<T, PathInfo<T>> pathMap = dijkstraShortestPath(start);
         List<T> path = new ArrayList<>();
         for (T at = end; at != null; at = pathMap.get(at).predecessor()) {
             path.add(at);
         }
         Collections.reverse(path);
-        return path;
+        return new FullPathInfo<>(pathMap.get(end).distance(), path);
     }
 
     /**
@@ -89,36 +89,13 @@ public class WeightedGraph<T> {
      * @param end the ending vertex
      * @return a list of vertices representing the shortest path from start to end
      */
-    public List<T> reconstructPath(Map<T, PathInfo<T>> pathMap, T end) {
+    public FullPathInfo<T> reconstructPath(Map<T, PathInfo<T>> pathMap, T end) {
         List<T> path = new ArrayList<>();
         for (T at = end; at != null; at = pathMap.get(at).predecessor()) {
             path.add(at);
         }
         Collections.reverse(path);
-        return path;
-    }
-
-    /**
-     * Returns the distance of the shortest path from the start vertex to the end vertex.
-     * @param pathMap a map containing the shortest paths from the start vertex
-     * @param end the ending vertex
-     * @return the distance of the shortest path, or Integer.MAX_VALUE if no path exists
-     */
-    public int pathValue(Map<T, PathInfo<T>> pathMap, T end) {
-        PathInfo<T> pathInfo = pathMap.get(end);
-        if (pathInfo == null) {
-            return Integer.MAX_VALUE;
-        }
-        return pathInfo.distance();
-    }
-
-    public int pathValue(T start, T end) {
-        Map<T, PathInfo<T>> pathMap = dijkstraShortestPath(start);
-        PathInfo<T> pathInfo = pathMap.get(end);
-        if (pathInfo == null) {
-            return Integer.MAX_VALUE;
-        }
-        return pathInfo.distance();
+        return new FullPathInfo<>(pathMap.get(end).distance(), path);
     }
 
     record NodeDistance<T>(T vertex, int distance) {}
