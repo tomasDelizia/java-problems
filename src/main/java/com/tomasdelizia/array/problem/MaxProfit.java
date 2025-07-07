@@ -18,4 +18,15 @@ public class MaxProfit {
         }
         return maxProfit;
     }
+
+    public static int maxProfitSingleTransaction(int[] prices) {
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (Integer price : prices) {
+            minPrice = Math.min(price, minPrice);
+            int profit = price - minPrice;
+            maxProfit = Math.max(profit, maxProfit);
+        }
+        return maxProfit;
+    }
 }
