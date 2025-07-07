@@ -53,7 +53,7 @@ class WeightedGraphTest {
         assertTrue(graph.addEdge("E", "G", 4));
         assertTrue(graph.addEdge("F", "G", 8));
 
-        WeightedGraph<String> mst = graph.minimumSpanningTree();
+        WeightedGraph<String> mst = graph.primMinimumSpanningTree();
         assertEquals(7-1, mst.getEdgesCount());
     }
 }

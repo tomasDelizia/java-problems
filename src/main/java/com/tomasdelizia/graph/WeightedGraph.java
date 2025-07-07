@@ -98,7 +98,12 @@ public class WeightedGraph<T> {
         return new FullPathInfo<>(pathMap.get(end).distance(), path);
     }
 
-    public WeightedGraph<T> minimumSpanningTree() {
+    /**
+     * Calculates the minimum spanning tree of the graph using Prim's algorithm.
+     * Time complexity: O(E log V), where E is the number of edges and V is the number of vertices.
+     * @return a new WeightedGraph containing the minimum spanning tree
+     */
+    public WeightedGraph<T> primMinimumSpanningTree() {
         T start = adjacencyList.keySet().stream().findFirst().orElse(null);
         WeightedGraph<T> mst = new WeightedGraph<>();
         if (start == null) return mst; // Return empty graph if no vertices exist
