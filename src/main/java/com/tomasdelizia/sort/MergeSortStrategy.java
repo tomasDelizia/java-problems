@@ -51,6 +51,7 @@ public class MergeSortStrategy<T> extends BaseSortStrategy<T> {
     @Override
     public void sort(T[] values) {
         int n = values.length;
+        if (n <= 1) return;
         T[] sorted = mergeSort(values);
         System.arraycopy(sorted, 0, values, 0, n);
     }
