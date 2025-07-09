@@ -1,4 +1,4 @@
-package com.tomasdelizia.string;
+package com.tomasdelizia.stack.problem;
 
 import java.util.Stack;
 

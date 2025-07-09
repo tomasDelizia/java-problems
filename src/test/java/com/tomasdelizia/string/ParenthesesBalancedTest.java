@@ -1,5 +1,6 @@
 package com.tomasdelizia.string;
 
+import com.tomasdelizia.stack.problem.ParenthesesBalanced;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
