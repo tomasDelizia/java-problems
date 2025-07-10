@@ -266,11 +266,12 @@ public class SinglyLinkedList<T> {
         // For values >= x
         Node<T> dummy2 = new Node<>(null);
 
-        // Pointers to buld the two lists.
+        // Pointers to build the two lists.
         Node<T> prev1 = dummy1;
         Node<T> prev2 = dummy2;
         Node<T> current = head;
 
+        // Traverse the list and partition nodes into two lists.
         while (current != null) {
             int compare = compare(current.value, x);
             if (compare < 0) {
@@ -308,9 +309,9 @@ public class SinglyLinkedList<T> {
      * @param endIndex the ending index of the sublist to reverse
      */
     public void reverseBetween(int startIndex, int endIndex) {
-        if (startIndex >= endIndex || size < startIndex) return;
+        if (startIndex >= endIndex || size == 0) return;
 
-        // Create dummy node before head to simplify edge cases.
+        // Create dummy node before head to simplify edge cases and zero indexing.
         Node<T> dummy = new Node<>(null);
         dummy.next = head;
 
@@ -321,7 +322,8 @@ public class SinglyLinkedList<T> {
         // Start reversing from prev.next
         Node<T> current = prev.next;
 
-        for (int i = 0; i < endIndex - startIndex; i++) {
+        int steps = endIndex - startIndex;
+        for (int i = 0; i < steps; i++) {
             Node<T> toMove = current.next;
 
             // Remove toModeFrom its place
@@ -342,6 +344,7 @@ public class SinglyLinkedList<T> {
 
     /**
      * Swaps every two adjacent nodes in the list.
+     * Leaves the last node unchanged if the list has an odd number of nodes.
      */
     public void swapPairs() {
         // Create dummy node to simplify process and connect it to the head.

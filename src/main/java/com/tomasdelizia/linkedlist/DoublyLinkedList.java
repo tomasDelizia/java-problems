@@ -215,7 +215,7 @@ public class DoublyLinkedList<T> {
         // For values >= x
         Node<T> dummy2 = new Node<>(null);
 
-        // Pointers to buld the two lists.
+        // Pointers to build the two lists.
         Node<T> prev1 = dummy1;
         Node<T> prev2 = dummy2;
         Node<T> current = head;
@@ -268,7 +268,7 @@ public class DoublyLinkedList<T> {
      * @param endIndex the ending index of the sublist to reverse
      */
     public void reverseBetween(int startIndex, int endIndex) {
-        if (startIndex >= endIndex || size < startIndex) return;
+        if (startIndex >= endIndex || size == 0) return;
 
         // Create dummy node before head to simplify edge cases.
         Node<T> dummy = new Node<>(null);
@@ -282,7 +282,8 @@ public class DoublyLinkedList<T> {
         // Start reversing from prev.next
         Node<T> current = prev.next;
 
-        for (int i = 0; i < endIndex - startIndex; i++) {
+        int steps = endIndex - startIndex;
+        for (int i = 0; i < steps; i++) {
             Node<T> toMove = current.next;
 
             // Remove toModeFrom its place
@@ -307,6 +308,7 @@ public class DoublyLinkedList<T> {
 
     /**
      * Swaps every two adjacent nodes in the list.
+     * Leaves the last node unchanged if the list has an odd number of nodes.
      */
     public void swapPairs() {
         // Create dummy node to simplify process and connect it to the head.
