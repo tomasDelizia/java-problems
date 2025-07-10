@@ -267,4 +267,73 @@ class SinglyLinkedListTest {
         singleElementList.append(1);
         assertEquals(1, SinglyLinkedList.binaryToDecimal(singleElementList));
     }
+
+    @Test
+    void testPartition() {
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        list.append(3);
+        list.append(5);
+        list.append(8);
+        list.append(5);
+        list.append(10);
+        list.append(2);
+        list.append(1);
+
+        System.out.println("Original list:");
+        list.printList();
+
+        list.partition(5);
+        System.out.println("Partitioned list around 5:");
+        list.printList();
+
+        // Check if the partitioning is correct
+        assertTrue(list.getValue(0) <= 5);
+        assertTrue(list.getValue(list.size() - 1) >= 5);
+    }
+
+    @Test
+    void testReverseBetween() {
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+        list.append(5);
+
+        System.out.println("Original list:");
+        list.printList();
+
+        // Reverse between indices 1 and 3 (inclusive)
+        list.reverseBetween(1, 3);
+        System.out.println("List after reversing between indices 1 and 3:");
+        list.printList();
+
+        assertEquals(1, list.getValue(0));
+        assertEquals(4, list.getValue(1));
+        assertEquals(3, list.getValue(2));
+        assertEquals(2, list.getValue(3));
+        assertEquals(5, list.getValue(4));
+    }
+
+    @Test
+    void testSwapPairs() {
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+
+        System.out.println("Original list:");
+        list.printList();
+
+        // Swap pairs
+        list.swapPairs();
+        System.out.println("List after swapping pairs:");
+        list.printList();
+
+        assertEquals(2, list.getValue(0));
+        assertEquals(1, list.getValue(1));
+        assertEquals(4, list.getValue(2));
+        assertEquals(3, list.getValue(3));
+    }
 }

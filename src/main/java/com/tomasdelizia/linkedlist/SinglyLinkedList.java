@@ -25,6 +25,10 @@ public class SinglyLinkedList<T> {
         System.out.println();
     }
 
+    public int size() {
+        return size;
+    }
+
     public void clear() {
         this.head = null;
         this.tail = null;
@@ -249,6 +253,118 @@ public class SinglyLinkedList<T> {
             current = current.next;
         }
         return result;
+    }
+
+    /**
+     * Partitions the list into two parts: one with values less than x and the other with values greater than or equal to x.
+     * @param x the value to partition the list around
+     */
+    public void partition(T x) {
+        if (head == null) return;
+        // For values < x
+        Node<T> dummy1 = new Node<>(null);
+        // For values >= x
+        Node<T> dummy2 = new Node<>(null);
+
+        // Pointers to buld the two lists.
+        Node<T> prev1 = dummy1;
+        Node<T> prev2 = dummy2;
+        Node<T> current = head;
+
+        while (current != null) {
+            int compare = compare(current.value, x);
+            if (compare < 0) {
+                // Attach node to dummy1.
+                prev1.next = current;
+                prev1 = current;
+            } else {
+                // Attach node to dummy2.
+                prev2.next = current;
+                prev2 = current;
+            }
+            current = current.next;
+        }
+
+        // Terminate the second list.
+        prev2.next = null;
+
+        // Connect the two lists.
+        prev1.next = dummy2.next;
+        
+        // Update the head pointer of the main list.
+        head = dummy1.next;
+
+        // Update the tail pointer if the second list is not empty.
+        if (dummy2.next != null) {
+            tail = prev2;
+        } else {
+            tail = prev1; // If no nodes in dummy2, tail is the last node of dummy1.
+        }
+    }
+
+    /**
+     * Reverses the sublist between startIndex and endIndex (inclusive).
+     * @param startIndex the starting index of the sublist to reverse
+     * @param endIndex the ending index of the sublist to reverse
+     */
+    public void reverseBetween(int startIndex, int endIndex) {
+        if (startIndex >= endIndex || size < startIndex) return;
+
+        // Create dummy node before head to simplify edge cases.
+        Node<T> dummy = new Node<>(null);
+        dummy.next = head;
+
+        // Move prev to the node before startIndex
+        Node<T> prev = dummy;
+        for (int i = 0; i < startIndex; i++) prev = prev.next;
+
+        // Start reversing from prev.next
+        Node<T> current = prev.next;
+
+        for (int i = 0; i < endIndex - startIndex; i++) {
+            Node<T> toMove = current.next;
+
+            // Remove toModeFrom its place
+            current.next = toMove.next;
+
+            // Move toMove to the front of the sublist.
+            toMove.next = prev.next;
+
+            prev.next = toMove;
+        }
+        // Update the head in the case it changed.
+        head = dummy.next;
+        // Update the tail if necessary.
+        if (endIndex == size - 1) {
+            tail = current; // If we reversed till the end, update tail.
+        }
+    }
+
+    /**
+     * Swaps every two adjacent nodes in the list.
+     */
+    public void swapPairs() {
+        // Create dummy node to simplify process and connect it to the head.
+        Node<T> dummy = new Node<>(null);
+        dummy.next = head;
+        // Create prev that will always point to the node before the pair of nodes to swap.
+        Node<T> prev = dummy;
+
+        // Loop while there are two nodes to swap.
+        while (head != null && head.next != null) {
+            Node<T> first = head;
+            Node<T> second = head.next;
+
+            prev.next = second;
+            first.next = second.next;
+            second.next = first;
+
+            head = first.next;
+            prev = first;
+        }
+        // Exclude the dummy node from the list.
+        head = dummy.next;
+        tail = prev; // Update tail to the last processed node.
     }
 
     public void bubbleSort() {
