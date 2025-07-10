@@ -130,4 +130,27 @@ class DoublyLinkedListTest {
         DoublyLinkedList<Integer> emptyList = new DoublyLinkedList<>();
         assertTrue(emptyList.isPalindrome()); // Empty list is considered a palindrome
     }
+
+    @Test
+    void testPartition() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+        list.append(3);
+        list.append(5);
+        list.append(8);
+        list.append(5);
+        list.append(10);
+        list.append(2);
+        list.append(1);
+
+        System.out.println("Original list:");
+        list.printList();
+
+        list.partition(5);
+        System.out.println("Partitioned list around 5:");
+        list.printList();
+
+        // Check if the partitioning is correct
+        assertTrue(list.getValue(0) <= 5);
+        assertTrue(list.getValue(list.size() - 1) >= 5);
+    }
 }

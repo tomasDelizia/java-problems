@@ -25,6 +25,10 @@ public class DoublyLinkedList<T> {
         System.out.println();
     }
 
+    public int size() {
+        return size;
+    }
+
     public void append(T value) {
         Node<T> newNode = new Node<>(value);
         if (size == 0) {
@@ -200,7 +204,65 @@ public class DoublyLinkedList<T> {
         }
     }
 
-    public static class Node<T> {
+    /**
+     * Partitions the list into two parts: one with values less than x and the other with values greater than or equal to x.
+     * @param x the value to partition the list around
+     */
+    public void partition(T x) {
+        if (head == null) return;
+        // For values < x
+        Node<T> dummy1 = new Node<>(null);
+        // For values >= x
+        Node<T> dummy2 = new Node<>(null);
+
+        // Pointers to buld the two lists.
+        Node<T> prev1 = dummy1;
+        Node<T> prev2 = dummy2;
+        Node<T> current = head;
+
+        while (current != null) {
+            int compare = compare(current.value, x);
+            if (compare < 0) {
+                // Attach node to dummy1.
+                prev1.next = current;
+                current.prev = prev1;
+                prev1 = current;
+            } else {
+                // Attach node to dummy2.
+                prev2.next = current;
+                current.prev = prev2;
+                prev2 = current;
+            }
+            current = current.next;
+        }
+
+        // Terminate the second list.
+        prev2.next = null;
+
+        // Connect the two lists.
+        prev1.next = dummy2.next;
+
+        // If dummy2 has nodes, fix the prev pointer.
+        if (dummy2.next != null) dummy2.next.prev = prev1;
+
+        // Update the head pointer of the main list.
+        head = dummy1.next;
+        if (head != null) head.prev = null;
+
+        // Update the tail pointer if the second list is not empty.
+        if (dummy2.next != null) {
+            tail = prev2;
+        } else {
+            tail = prev1; // If no nodes in dummy2, tail is the last node of dummy1.
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private int compare(Object k1, Object k2) {
+        return ((Comparable<? super T>) k1).compareTo((T) k2);
+    }
+
+    static class Node<T> {
         private T value;
         private Node<T> next;
         private Node<T> prev;
