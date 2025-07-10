@@ -235,6 +235,22 @@ public class SinglyLinkedList<T> {
         return slow.value;
     }
 
+    /**
+     * Converts a binary linked list to decimal.
+     * @param binaryList A linked list where each node contains a binary digit (0 or 1).
+     * @return The decimal representation of the binary number.
+     */
+    public static long binaryToDecimal(SinglyLinkedList<Integer> binaryList) {
+        long result = 0;
+        Node<Integer> current = binaryList.head;
+        while (current != null) {
+            result *= 2;
+            if (current.value.equals(1)) result += 1;
+            current = current.next;
+        }
+        return result;
+    }
+
     public void bubbleSort() {
         if (size < 2) {
             return;

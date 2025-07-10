@@ -246,4 +246,25 @@ class SinglyLinkedListTest {
         assertEquals(6, list.removeFirst());
         assertEquals(10, list.removeFirst());
     }
+
+    @Test
+    void testBinaryToDecimal() {
+        SinglyLinkedList<Integer> binaryList = new SinglyLinkedList<>();
+        binaryList.append(1);
+        binaryList.append(0);
+        binaryList.append(1);
+        binaryList.append(1);
+        binaryList.append(0);
+
+        assertEquals(22, SinglyLinkedList.binaryToDecimal(binaryList)); // 10110 in binary is 22 in decimal
+
+        // Test with an empty list
+        SinglyLinkedList<Integer> emptyBinaryList = new SinglyLinkedList<>();
+        assertEquals(0, SinglyLinkedList.binaryToDecimal(emptyBinaryList));
+
+        // Test with a single element list
+        SinglyLinkedList<Integer> singleElementList = new SinglyLinkedList<>();
+        singleElementList.append(1);
+        assertEquals(1, SinglyLinkedList.binaryToDecimal(singleElementList));
+    }
 }
