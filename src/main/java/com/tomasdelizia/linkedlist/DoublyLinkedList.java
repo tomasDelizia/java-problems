@@ -262,6 +262,11 @@ public class DoublyLinkedList<T> {
         return ((Comparable<? super T>) k1).compareTo((T) k2);
     }
 
+    /**
+     * Reverses the sublist between startIndex and endIndex (inclusive).
+     * @param startIndex the starting index of the sublist to reverse
+     * @param endIndex the ending index of the sublist to reverse
+     */
     public void reverseBetween(int startIndex, int endIndex) {
         if (startIndex >= endIndex || size < startIndex) return;
 
@@ -298,6 +303,40 @@ public class DoublyLinkedList<T> {
         if (endIndex == size - 1) {
             tail = current; // If we reversed till the end, update tail.
         }
+    }
+
+    /**
+     * Swaps every two adjacent nodes in the list.
+     */
+    public void swapPairs() {
+        // Create dummy node to simplify process and connect it to the head.
+        Node<T> dummy = new Node<>(null);
+        dummy.next = head;
+        // Create prev that will always point to the node before the pair of nodes to swap.
+        Node<T> prev = dummy;
+
+        // Loop while there are two nodes to swap.
+        while (head != null && head.next != null) {
+            Node<T> first = head;
+            Node<T> second = head.next;
+
+            prev.next = second;
+            first.next = second.next;
+            second.next = first;
+
+            second.prev = prev;
+            first.prev = second;
+
+            // If there's a node after the first, set its prev pointer.
+            if (first.next != null) first.next.prev = first;
+
+            head = first.next;
+            prev = first;
+        }
+        // Exclude the dummy node from the list.
+        head = dummy.next;
+        if (head != null) head.prev = null;
+        tail = prev; // Update tail to the last processed node.
     }
 
     static class Node<T> {

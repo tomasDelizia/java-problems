@@ -177,4 +177,26 @@ class DoublyLinkedListTest {
         assertEquals(2, list.getValue(3));
         assertEquals(5, list.getValue(4));
     }
+
+    @Test
+    void testSwapPairs() {
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+
+        System.out.println("Original list:");
+        list.printList();
+
+        // Swap pairs
+        list.swapPairs();
+        System.out.println("List after swapping pairs:");
+        list.printList();
+
+        assertEquals(2, list.getValue(0));
+        assertEquals(1, list.getValue(1));
+        assertEquals(4, list.getValue(2));
+        assertEquals(3, list.getValue(3));
+    }
 }
