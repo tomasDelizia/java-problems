@@ -262,6 +262,44 @@ public class DoublyLinkedList<T> {
         return ((Comparable<? super T>) k1).compareTo((T) k2);
     }
 
+    public void reverseBetween(int startIndex, int endIndex) {
+        if (startIndex >= endIndex || size < startIndex) return;
+
+        // Create dummy node before head to simplify edge cases.
+        Node<T> dummy = new Node<>(null);
+        dummy.next = head;
+        head.prev = dummy;
+
+        // Move prev to the node before startIndex
+        Node<T> prev = dummy;
+        for (int i = 0; i < startIndex; i++) prev = prev.next;
+
+        // Start reversing from prev.next
+        Node<T> current = prev.next;
+
+        for (int i = 0; i < endIndex - startIndex; i++) {
+            Node<T> toMove = current.next;
+
+            // Remove toModeFrom its place
+            current.next = toMove.next;
+            if (toMove.next != null) toMove.next.prev = current;
+
+            // Move toMove to the front of the sublist.
+            toMove.next = prev.next;
+            prev.next.prev = toMove;
+
+            prev.next = toMove;
+            toMove.prev = prev;
+        }
+        // Update the head in the case it changed.
+        head = dummy.next;
+        head.prev = null;
+        // Update the tail if necessary.
+        if (endIndex == size - 1) {
+            tail = current; // If we reversed till the end, update tail.
+        }
+    }
+
     static class Node<T> {
         private T value;
         private Node<T> next;
