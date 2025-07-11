@@ -210,6 +210,10 @@ public class IntArraySort {
         }
     }
 
+    public static void quickSort(int[] nums) {
+        quickSort(nums, SortOrder.ASCENDING);
+    }
+
     /**
      * Sorts an array of integers using the quick sort algorithm.
      * Quick sort is a divide-and-conquer algorithm that selects a pivot element and partitions the surrounding array.
