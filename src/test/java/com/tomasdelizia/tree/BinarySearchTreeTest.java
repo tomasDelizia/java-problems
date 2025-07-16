@@ -217,6 +217,14 @@ class BinarySearchTreeTest {
     }
 
     @Test
+    void testIsValidBSTTwoNodes() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Integer[] sorted = new Integer[]{1, 1};
+        bst.sortedArrayToBST(sorted);
+        assertTrue(bst.isValidBST());
+    }
+
+    @Test
     void testKthSmallestWithInOrderDfs() {
         BinarySearchTree<Integer> bst = new BinarySearchTree<>();
         Integer[] sorted = new Integer[]{1, 2, 4, 4, 5, 6, 7};

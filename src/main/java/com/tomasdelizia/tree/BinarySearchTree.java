@@ -289,7 +289,7 @@ public class BinarySearchTree<T> {
     public boolean isValidBST() {
         List<T> inOrderValues = rDfsInOrder();
         int n = inOrderValues.size();
-        for (int i = 0; i < n - 2; i++) {
+        for (int i = 0; i < n - 1; i++) {
             int compare = compare(inOrderValues.get(i), inOrderValues.get(i + 1));
             if (compare > 0) {
                 return false;
