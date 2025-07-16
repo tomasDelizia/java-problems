@@ -34,8 +34,7 @@ public class QuickSortStrategy<T> extends BaseSortStrategy<T> {
     }
 
     private T getPivotM3(T[] values, int left, int right) {
-        // return values[(left + right) / 2];
-        int center = (left + right) / 2;
+        int center = left + (right - left) / 2;
         if (compare(values[right], values[left]) < 0) {
             // Swap left and right if left is greater than right
            swap(values, right, left);

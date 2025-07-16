@@ -337,7 +337,7 @@ public class BinarySearchTree<T> {
         if (left > right) {
             return null;
         }
-        int center = (left + right) / 2;
+        int center = left + (right - left) / 2;
         Node<T> current = new Node<>(values[center]);
         current.left = sortedArrayToBST(values, left, center - 1);
         current.right = sortedArrayToBST(values, center + 1, right);

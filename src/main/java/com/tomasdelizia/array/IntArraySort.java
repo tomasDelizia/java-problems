@@ -181,7 +181,7 @@ public class IntArraySort {
         if (left >= right) {
             return;
         }
-        int center = (left + right) / 2;
+        int center = left + (right - left) / 2;
         mergeSort(left, center, nums, temp);
         mergeSort(center + 1, right, nums, temp);
         merge(left, center, right, nums, temp);
@@ -277,8 +277,7 @@ public class IntArraySort {
     }
 
     private static int getPivotM3(int[] nums, int left, int right) {
-        // return nums[(left + right) / 2];
-        int center = (left + right) / 2;
+        int center = left + (right- left) / 2;
         if (nums[right] < nums[left]) {
             // Swap left and right if left is greater than right
             swap(nums, left, right);
