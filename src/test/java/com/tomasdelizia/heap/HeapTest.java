@@ -34,4 +34,21 @@ class HeapTest {
         System.out.println(heap.getHeap());
     }
 
+    @Test
+    void testHeapify() {
+        Integer[] values = {10, 20, 5, 15, 30};
+        Heap<Integer> heap = new Heap<>(values);
+        assertEquals(5, heap.getHeap().size());
+        assertEquals(30, heap.getHeap().getFirst());
+        System.out.println(heap.getHeap());
+
+        heap.insert(25);
+        assertEquals(6, heap.getHeap().size());
+        assertEquals(30, heap.getHeap().getFirst());
+        System.out.println(heap.getHeap());
+
+        assertEquals(30, heap.remove());
+        System.out.println(heap.getHeap());
+    }
+
 }

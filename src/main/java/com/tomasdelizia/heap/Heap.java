@@ -10,6 +10,11 @@ public class Heap<T> {
         this.heap = new ArrayList<>();
     }
 
+    public Heap(T[] values) {
+        buildHeap(values);
+        this.heap = new ArrayList<>(List.of(values));
+    }
+
     public List<T> getHeap() {
         // Returns a copy of the heap so that it cannot be modified externally
         return new ArrayList<>(heap);
@@ -122,5 +127,41 @@ public class Heap<T> {
         }
         heap.set(index1, toSwap2);
         heap.set(index2, toSwap1);
+    }
+
+    private void heapify(T[] values, int n, int i) {
+        int largest = i; // Initialize largest as root
+        int left = 2 * i + 1; // left = 2*i + 1
+        int right = 2 * i + 2; // right = 2*i + 2
+
+        // If left child is larger than root
+        if (left < n && compare(values[left], values[largest]) > 0) largest = left;
+
+        // If right child is larger than largest so far
+        if (right < n && compare(values[right], values[largest]) > 0) largest = right;
+
+        // If largest is not root
+        if (largest != i) {
+            T swap = values[i];
+            values[i] = values[largest];
+            values[largest] = swap;
+
+            // Recursively heapify the affected subtree
+            heapify(values, n, largest);
+        }
+    }
+
+    // Function to build a Max-Heap from the given array
+    private void buildHeap(T[] values) {
+        int n = values.length;
+        // Index of last non-leaf node
+        int startIdx = (n / 2) - 1;
+
+        // Perform reverse level order traversal
+        // from last non-leaf node and heapify
+        // each node
+        for (int i = startIdx; i >= 0; i--) {
+            heapify(values, n, i);
+        }
     }
 }
