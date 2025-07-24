@@ -33,7 +33,7 @@ public class WeightedGraph<T> {
      */
     public Map<T, PathInfo<T>> dijkstraShortestPath(T start) {
         Map<T, PathInfo<T>> shortestPaths = new HashMap<>();
-        PriorityQueue<NodeDistance<T>> pq = new PriorityQueue<>(Comparator.comparingInt(p -> p.distance));
+        Queue<NodeDistance<T>> pq = new PriorityQueue<>(Comparator.comparingInt(p -> p.distance));
         Set<T> visited = new HashSet<>();
 
         for (T vertex : adjacencyList.keySet()) {
@@ -108,7 +108,7 @@ public class WeightedGraph<T> {
         WeightedGraph<T> mst = new WeightedGraph<>();
         if (start == null) return mst; // Return empty graph if no vertices exist
         Set<T> visited = new HashSet<>();
-        PriorityQueue<Edge<T>> minEdgesHeap = new PriorityQueue<>(Comparator.comparingInt(e -> e.weight));
+        Queue<Edge<T>> minEdgesHeap = new PriorityQueue<>(Comparator.comparingInt(e -> e.weight));
 
         // Add all vertices to the new MST graph (without edges yet)
         for (T vertex : adjacencyList.keySet()) {
